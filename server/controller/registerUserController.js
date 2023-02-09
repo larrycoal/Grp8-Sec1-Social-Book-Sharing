@@ -17,7 +17,7 @@ module.exports = async (req, res) => {
       await Users.create(newUser);
       res.status(200);
     } else {
-      req.flash("registerPasswordError", "Password do not match");
+      console.log("registerPasswordError", "Password do not match");
       res.status(403);
     }
   } catch (err) {
