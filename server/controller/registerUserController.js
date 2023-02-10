@@ -1,13 +1,23 @@
 const Users = require("../model/Users");
 
 module.exports = async (req, res) => {
-  const { email, password, confirmPassword,address,phonenumber,gender,age } = req.body;
+  const {
+    email,
+    password,
+    confirmpassword,
+    address,
+    phonenumber,
+    gender,
+    age,
+    firstname,
+    lastname,
+  } = req.body;
   try {
-    if (password === confirmPassword) {
+    if (password === confirmpassword) {
       let newUser = {
         email,
-        firstname,
-        lastname,
+        firstName:firstname,
+        lastName:lastname,
         address,
         password,
         phonenumber,
@@ -15,13 +25,13 @@ module.exports = async (req, res) => {
         age
       };
       await Users.create(newUser);
-      res.status(200);
+      res.status(200).send("succesful");
     } else {
       console.log("registerPasswordError", "Password do not match");
-      res.status(403);
+      res.status(403).send("Password do not match");
     }
   } catch (err) {
     console.log(err);
-    res.status(400);
+    res.status(400).send(err);
   }
 };
