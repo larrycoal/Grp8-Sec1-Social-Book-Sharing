@@ -1,0 +1,30 @@
+.layout_wrapper{
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    header{
+       padding: 1rem 3rem;
+        nav{
+            display: flex;
+            align-items: center;
+            h2{
+                flex-grow: 1;
+                font-size: 3rem;
+            }
+            ul{
+                display: flex;
+                list-style: none;
+                font-size: 2rem;
+                gap: 1rem;
+            }
+        }
+    }
+    .content{
+        flex-grow: 1;
+    }
+    footer{
+        font-size: 3rem;
+        text-align: center;
+        padding: 1rem;
+    }
+}
