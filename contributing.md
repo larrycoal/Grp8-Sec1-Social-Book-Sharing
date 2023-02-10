@@ -12,12 +12,12 @@ If you encounter a bug or have a feature request, please create an issue on our 
 **Contributing Code**
 If you'd like to contribute code, here's how:
 
-Clone your the repo to your local machine
-Create a new branch for your changes
-Make your changes and test thoroughly
-Commit your changes and push to your branch
-Submit a pull request to the [SOCIAL_BOOK_SHARING] repository main branch
-We review all pull requests and may request changes or additions before merging your contribution.
+-Clone your the repo to your local machine
+-Create a new branch for your changes
+-Make your changes and test thoroughly
+-Commit your changes and push to your branch
+-Submit a pull request to the [SOCIAL_BOOK_SHARING] repository main branch
+-We review all pull requests and may request changes or additions before merging your contribution.
 
 **Improving Documentation**
 If you'd like to improve the documentation, simply make your changes and submit a pull request. We appreciate any efforts to make [SOCIAL_BOOK_SHARING] easier to understand and use.
