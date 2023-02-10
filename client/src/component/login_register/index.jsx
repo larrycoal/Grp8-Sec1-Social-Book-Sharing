@@ -1,12 +1,11 @@
 import React from "react";
-import { Outlet, RouterProvider } from "react-router-dom";
-import { router } from "../../routes";
-import Login from "./login";
+import { Outlet } from "react-router-dom";
+import "./index.scss"
 
 const index = () => {
   return (
     <div className="login_register_wrapper">
-      <div className="left">logo</div>
+      <div className="left">Login Image</div>
       <div className="right">
         <Outlet />
       </div>
