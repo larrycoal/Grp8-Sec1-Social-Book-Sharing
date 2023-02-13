@@ -1,4 +1,5 @@
-**Contributing to [SOCIAL_BOOK_SHARING]**
+**Contributing to SOCIAL_BOOK_SHARING**
+
 Thank you for considering contributing to [SOCIAL_BOOK_SHARING]. Your contributions will help make this project better for everyone. Whether you're fixing a bug, proposing a new feature, or simply improving documentation, we welcome your contributions.
 
 Here are some guidelines to follow when contributing to [SOCIAL_BOOK_SHARING]:
