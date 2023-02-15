@@ -1,3 +1,22 @@
 .main_wrapper{
     height: 100%;
 }
+
+.btn-primary{
+    background-color: #452B5B;
+    border-color: #452B5B;
+  
+    &:hover {
+    color: #fff;
+    background-color: #452B5B;
+    border-color: #452B5B;
+  }
+  }
+  
+  .btn-light {
+    border-color: #452B5B;
+  
+    &:hover {
+      border-color: #452B5B;
+    }
+  }

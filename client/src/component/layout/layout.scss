@@ -7,6 +7,7 @@
         nav{
             display: flex;
             align-items: center;
+
             h2{
                 flex-grow: 1;
                 font-size: 3rem;
@@ -27,4 +28,8 @@
         text-align: center;
         padding: 1rem;
     }
+}
+
+.navbar{
+    background-color: #452B5B !important;
 }

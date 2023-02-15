@@ -7,10 +7,10 @@ const index = () => {
   return (
     <Layout>
       <div className="home_wrapper">
-        <div className="nav_container">
+        <div className="nav_container col-md-6">
           <Nav />
         </div>
-        <div className="display_container">
+        <div className="display_container col-md-6">
           <Outlet />
         </div>
       </div>
