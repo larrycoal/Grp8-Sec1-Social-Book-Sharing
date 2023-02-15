@@ -1,16 +1,20 @@
-.home_wrapper{
+.home_wrapper {
     width: 80vw;
     margin: 0 auto;
     display: flex;
     gap: 2rem;
     height: 100%;
-    .nav_container{
+
+    .nav_container {
         width: 250px;
         height: 300px;
-        border: 2px solid black;
+        box-shadow: 20px 20px 50px lightgray;
+        border-radius: 1rem;
     }
-    .display_container{
+
+    .display_container {
         flex-grow: 1;
-        border: 2px solid black;
+        box-shadow: 20px 20px 50px lightgray;
+        border-radius: 1rem;
     }
 }

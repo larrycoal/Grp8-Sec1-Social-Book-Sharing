@@ -13,3 +13,40 @@
     flex: 1;
   }
 }
+
+.row .signContainer{
+  justify-content: center;
+  margin-top: 5rem;
+}
+
+
+.btn-block{
+  width:-webkit-fill-available
+}
+
+.logoimg{
+  width: 44%;
+}
+
+.loginimg{
+  min-height: 45rem;
+}
+
+.btn-primary{
+  background-color: #452B5B;
+  border-color: #452B5B;
+
+  &:hover {
+  color: #fff;
+  background-color: #452B5B;
+  border-color: #452B5B;
+}
+}
+
+.btn-light {
+  border-color: #452B5B;
+
+  &:hover {
+    border-color: #452B5B;
+  }
+}
