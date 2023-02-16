@@ -1,12 +1,10 @@
 .login_register_wrapper {
-  display: flex;
   height: 100%;
-  font-size: 3rem;
-  text-align: center;
-  gap: 2rem;
+  .signon_container {
+    height: 100%;
+  }
   .left {
-    border: 2px solid black;
-    flex: 1;
+    height: 100%;
   }
   .right {
     border: 2px solid black;
@@ -14,39 +12,39 @@
   }
 }
 
-.row .signContainer{
+.row .signContainer {
   justify-content: center;
   margin-top: 5rem;
 }
 
-
-.btn-block{
-  width:-webkit-fill-available
+.btn-block {
+  width: -webkit-fill-available;
 }
 
-.logoimg{
+.logoimg {
   width: 44%;
 }
 
-.loginimg{
-  min-height: 45rem;
+.loginimg {
+  height: 100%;
+  object-fit: cover;
 }
 
-.btn-primary{
-  background-color: #452B5B;
-  border-color: #452B5B;
+.btn-primary {
+  background-color: #452b5b;
+  border-color: #452b5b;
 
   &:hover {
-  color: #fff;
-  background-color: #452B5B;
-  border-color: #452B5B;
-}
+    color: #fff;
+    background-color: #452b5b;
+    border-color: #452b5b;
+  }
 }
 
 .btn-light {
-  border-color: #452B5B;
+  border-color: #452b5b;
 
   &:hover {
-    border-color: #452B5B;
+    border-color: #452b5b;
   }
 }
