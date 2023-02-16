@@ -3,6 +3,7 @@ import { useState } from "react";
 import "./App.scss";
 import { RouterProvider } from "react-router-dom";
  import {router} from "./routes"
+ import api from "./api"
 
 function App() {
   const [count, setCount] = useState(0);
