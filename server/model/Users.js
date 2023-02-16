@@ -12,19 +12,28 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
-  age: {
-    type: Number,
+  dob: {
+    type: String,
     required: true,
   },
   email: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
-  address: {
+  city: {
+    type: String,
+    required: true,
+  },
+  province: {
+    type: String,
+    required: true,
+  },
+  postalCode: {
     type: String,
     required: true,
   },
