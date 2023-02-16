@@ -1,4 +1,5 @@
 const express = require("express")
+const cors = require("cors")
 require("./model/db");
 const bodyParser = require("body-parser");
 const app = express()
@@ -10,7 +11,7 @@ const authMiddleware  = require("./middlewares/authMiddleware");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(cors())
 
 app.post("/register",registerUser)
 app.post("/login",loginUser)
