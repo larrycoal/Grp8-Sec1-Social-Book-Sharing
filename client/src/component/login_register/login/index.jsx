@@ -30,6 +30,7 @@ const index = () => {
       const resp = await api.loginUser(payload);
       if (resp.ok) {
         localStorage.setItem("token", resp.data.accesstoken);
+        localStorage.setItem("user", JSON.stringify(resp.data.newUserData));
         navigate("/")
       } else {
         setFormData(() => {
