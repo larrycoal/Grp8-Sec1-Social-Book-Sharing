@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../api";
+// import Logo from '../../assets/images/logo5black.png'
 
 const index = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -19,6 +20,7 @@ const index = () => {
       };
     });
   };
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);

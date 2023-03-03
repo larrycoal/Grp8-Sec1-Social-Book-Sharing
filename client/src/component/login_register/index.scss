@@ -28,6 +28,8 @@
 .loginimg {
   height: 100%;
   object-fit: cover;
+  min-width: -webkit-fill-available;
+  min-height: 860px;
 }
 
 .btn-primary {

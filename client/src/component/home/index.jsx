@@ -6,11 +6,11 @@ import "./index.scss"
 const index = () => {
   return (
     <Layout>
-      <div className="home_wrapper">
-        <div className="nav_container col-md-6">
+      <div className="home_container wrapper">
+        <div className="nav_container">
           <Nav />
         </div>
-        <div className="display_container col-md-6">
+        <div className="display_container mr-4">
           <Outlet />
         </div>
       </div>
