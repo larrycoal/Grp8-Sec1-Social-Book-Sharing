@@ -1,15 +1,24 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import api from "../../../api";
-
+import React, { useState, useContext } from "react";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { UserContext } from "../../../Context/UserContext";
+import "./login.scss"
 const index = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     formError: false,
     errorMessage: "",
   });
+
+  const { isLoggedIn, signIn,currentUser } = useContext(UserContext);
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      navigate("/");
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData(() => {
@@ -21,27 +30,32 @@ const index = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    if(formData.username === "" || formData.password === ""){
+       setFormData(() => {
+         return {
+           ...formData,
+           formError: true,
+           errorMessage: "Please enter a username and/or password",
+         };
+       });
+       return
+    }
     const payload = {
       username: formData.username,
       password: formData.password,
     };
-    try {
-      const resp = await api.loginUser(payload);
-      if (resp.ok) {
-        localStorage.setItem("token", resp.data.accesstoken);
-        localStorage.setItem("user", JSON.stringify(resp.data.newUserData));
-        navigate("/")
-      } else {
-        setFormData(() => {
-          return {
-            ...formData,
-            formError: true,
-            errorMessage: resp.data,
-          };
-        });
-      }
-    } catch (err) {}
+    const resp = await signIn(payload);
+    if (resp === "success") {
+      navigate("/");
+    } else {
+      setFormData(() => {
+        return {
+          ...formData,
+          formError: true,
+          errorMessage: resp,
+        };
+      });
+    }
   };
   return (
     <div className="login_wrapper">
@@ -87,6 +101,12 @@ const index = () => {
             />
           </div>
         </div>
+        <div className="error">
+          {
+            formData.formError? formData.errorMessage : null
+          }
+        </div>
+        <div>Don't have an account? <Link to="/register">Create account</Link></div>
       </form>
     </div>
   );

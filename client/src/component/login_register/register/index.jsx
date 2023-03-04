@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React, { useState,useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import api from "../../../api";
 import "./register.scss";
 const index = () => {
-
-    const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -21,13 +20,19 @@ const index = () => {
     formError: false,
     errorMessage: "",
   });
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/");
+    }
+  }, []);
   const handleChange = (e) => {
     setFormData(() => {
       return {
         ...formData,
         [e.target.name]: e.target.value,
-        formError:false,
-        errorMessage:""
+        formError: false,
+        errorMessage: "",
       };
     });
   };
@@ -260,7 +265,7 @@ const index = () => {
             <div className="error">{formData.errorMessage}</div>
           )}
           <div className="row mt-2">
-            <div className="col-12" >
+            <div className="col-12">
               Already have an account? <Link to="/login">Login</Link>
             </div>
           </div>
