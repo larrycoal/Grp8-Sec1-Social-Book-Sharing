@@ -1,0 +1,52 @@
+[
+  {
+    id: 'eaaqAAAACAAJ',
+    title: 'The Harry Potter Collection',
+    img: 'http://books.google.com/books/content?id=eaaqAAAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+  },
+  {
+    id: 'L18VBQAAQBAJ',
+    title: 'The Psychology of Harry Potter',
+    img: 'http://books.google.com/books/content?id=L18VBQAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  },
+  {
+    id: 'LapIzQEACAAJ',
+    title: "Harry Potter and the Sorcerer's Stone: Minalima Edition (Harry Potter, Book 1), Volume 1",
+    img: 'http://books.google.com/books/content?id=LapIzQEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+  },
+  {
+    id: 'kLAoswEACAAJ',
+    title: 'Harry Potter and the Cursed Child',
+    img: 'http://books.google.com/books/content?id=kLAoswEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+  },
+  {
+    id: 'Gz8t2MttEQUC',
+    title: 'Harry Potter and Philosophy',
+    img: 'http://books.google.com/books/content?id=Gz8t2MttEQUC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  },
+  {
+    id: 'vnbgDwAAQBAJ',
+    title: 'Harry Potter: Exploring Hogwarts',
+    img: 'http://books.google.com/books/content?id=vnbgDwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  },
+  {
+    id: 'lJB5DwAAQBAJ',
+    title: 'The Ultimate Harry Potter and Philosophy',
+    img: 'http://books.google.com/books/content?id=lJB5DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  },
+  {
+    id: 'DKcWE3WXoj8C',
+    title: 'Harry Potter and International Relations',
+    img: 'http://books.google.com/books/content?id=DKcWE3WXoj8C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api'
+  },
+  {
+    id: 'Tf_1QwAACAAJ',
+    title: 'Harry Potter Film Wizardry',
+    img: 'http://books.google.com/books/content?id=Tf_1QwAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+  },
+  {
+    id: 'GZAoAQAAIAAJ',
+    title: 'Harry Potter and the Deathly Hallows',
+    img: 'http://books.google.com/books/content?id=GZAoAQAAIAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+  }
+]
