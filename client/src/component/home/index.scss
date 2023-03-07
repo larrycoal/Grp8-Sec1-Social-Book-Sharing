@@ -1,23 +1,17 @@
-.home_container {
-    width: 90vw;
+.home_wrapper {
+    width: 85vw;
     margin: 0 auto;
     display: flex;
     gap: 2rem;
     height: 100%;
-    flex-wrap: wrap;
+    padding: 1rem;
+    box-shadow: 0px 1px 11px 2px #f0e8e8;
 
-    .wrapper {
-        margin: auto;
-        max-width: 75rem;
-    }
-
-    .nav_container {
-        min-width: 386px;
-        max-width: 500px;
-        height: 220px;
-        box-shadow: 20px 20px 50px lightgrey;
-        border-radius: 1rem;
-        text-align: center;
+    .left{
+        width: 250px;
+        height: 100%;
+        border-right: 1px solid black;
+        padding: 1rem;
     }
 
     .display_container {

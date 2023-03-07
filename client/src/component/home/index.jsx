@@ -1,16 +1,25 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import Layout from "../layout";
-import Nav from "../nav";
+import Profile from "../profile";
 import "./index.scss"
+
+
 const index = () => {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if(!token){
+      navigate('/login')
+    }
+  }, []);
   return (
     <Layout>
-      <div className="home_container wrapper">
-        <div className="nav_container">
-          <Nav />
+      <div className="home_wrapper">
+        <div className="left">
+          <Profile />
         </div>
-        <div className="display_container mr-4">
+        <div className="right outlet_wrapper">
           <Outlet />
         </div>
       </div>

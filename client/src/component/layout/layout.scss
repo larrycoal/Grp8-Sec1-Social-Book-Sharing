@@ -4,19 +4,40 @@
     flex-direction: column;
     header{
        padding: 1rem 3rem;
+       background-color: #452B5B;
+       color: white;
         nav{
             display: flex;
-            align-items: center;
-
-            h2{
+            align-items: baseline;
+            .searchbar{
                 flex-grow: 1;
-                font-size: 3rem;
             }
+            .logo{
+                flex-grow: 1;
+            }
+            input{
+                padding: 10px;
+                border-radius: 5px;
+                border: none;
+                width: 20rem;
+                outline: none;
+            }
+            a{
+                text-decoration: none;
+                color: white;
+            }
+
             ul{
                 display: flex;
                 list-style: none;
-                font-size: 2rem;
+                font-size: 1rem;
                 gap: 1rem;
+                li{
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    cursor: pointer;
+                }
             }
         }
     }
@@ -24,7 +45,7 @@
         flex-grow: 1;
     }
     footer{
-        font-size: 3rem;
+        font-size: 1rem;
         text-align: center;
         padding: 1rem;
     }

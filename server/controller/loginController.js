@@ -22,7 +22,7 @@ module.exports = (req, res) => {
             newUserData,
             process.env.ACCESS_TOKEN_SECRET
           );
-          res.status(200).json({ accesstoken });
+          res.status(200).json({ accesstoken, newUserData });
         } else {
           res.status(401).send("login failed. Username or password incorrect");
         }

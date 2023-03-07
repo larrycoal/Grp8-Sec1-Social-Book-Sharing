@@ -1,32 +1,54 @@
-import { createBrowserRouter, Navigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import LoginRegister from "../component/login_register";
 import Register from "../component/login_register/register";
 import Home from "../component/home"
 import Login from "../component/login_register/login"
 import Timeline from "../component/timeline"
-import Profile from "../component/profile"
-import MyBooks from "../component/mybooks"
+import Settings from "../component/settings"
+import Dashboard from "../component/dashboard";
+import Mybooks from "../component/dashboard/mybooks"
+import Request from "../component/dashboard/request";
+import Borrowed from "../component/dashboard/borrowed";
 
 
-const authenticated = true
+const ProtectedRoute = ()=>{
+  return(
+    <></>
+  )
+}
+
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: authenticated ? <Home /> : <Navigate to="/login" />,
-    children:[
+    element: <Home />,
+    children: [
       {
         path: "/",
-        element:<Timeline/>
+        element: <Timeline />,
       },
       {
-        path: "/profile",
-        element:<Profile />
+        path: "/settings",
+        element: <Settings />,
       },
       {
-        path: "/mybooks",
-        element:<MyBooks />
-      }
-    ]
+        path: "/dashboard",
+        element: <Dashboard />,
+        children: [
+          {
+            path: "/dashboard/Mybooks",
+            element: <Mybooks />,
+          },
+          {
+            path: "/dashboard/request",
+            element: <Request />,
+          },
+          {
+            path: "/dashboard/borrowed",
+            element: <Borrowed />,
+          },
+        ],
+      },
+    ],
   },
   {
     path: "/",
@@ -42,5 +64,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
 ]);
