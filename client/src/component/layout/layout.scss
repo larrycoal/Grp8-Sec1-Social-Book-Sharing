@@ -54,3 +54,46 @@
 .navbar{
     background-color: #452B5B !important;
 }
+
+/******************* Footer Starts******************/
+
+footer {
+    height: 150px;
+    text-align: center;
+    background-color: #452B5B !important;
+    position: static;
+  }
+  
+  .footer-icon {
+    margin: 3% 2%;
+    color: #ffffff;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .footer-icon:hover {
+    color: #dda278;
+  }
+  
+  .footer-icon:visited {
+    color: #c6f2f1;
+    margin: 3% 2%;
+    font-size: 1.2em;
+    cursor: pointer;
+  }
+  
+  .footer_marg {
+    color: #ffffff;
+  }
+  
+  .copyright {
+    color: #eaf6f6;
+    font-size: 0.8125rem;
+    margin-top: 2%;
+  }
+  
+  /****************** Footer Ends**************************/
+
+  .logo{
+    width:15%;
+  }
