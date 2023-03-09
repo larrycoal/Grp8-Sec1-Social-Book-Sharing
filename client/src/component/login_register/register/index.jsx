@@ -20,12 +20,16 @@ const index = () => {
     formError: false,
     errorMessage: "",
   });
+
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
       navigate("/");
     }
   }, []);
+
+
   const handleChange = (e) => {
     setFormData(() => {
       return {

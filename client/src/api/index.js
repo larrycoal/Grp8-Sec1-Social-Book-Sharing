@@ -22,12 +22,19 @@ const boostrapApi = () => {
 const create = ({api})=>{
     const registerUser = (params={})=>api.post(`${baseUrl}/register`,params)
     const loginUser = (params = {}) => api.post(`${baseUrl}/login`, params);
+    const findbooks = (params = {}) => api.get(`${baseUrl}/findBooks`, params);
+    const addbook = (params = {}) => api.post(`${baseUrl}/addbook`, params);
+    const getAllBooks = (params = {}) => api.get(`${baseUrl}/books`, params);
+
 
     return{
         registerUser,
-        loginUser
+        loginUser,
+        findbooks,
+        addbook,
+        getAllBooks
     }
 }
 
 const api = create({api:boostrapApi()})
-export default api
+export default api;
