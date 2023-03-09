@@ -5,13 +5,15 @@ const User = require("../model/Users");
 const UserBook = require("../model/UserBook");
 module.exports = async (req, res) => {
   const { title, type, id } = req.body;
+  console.log("title",req.body);
   if(!title || !id) return res.status(403).json("title or id required")
   let bookId = null;
   let user = await User.findOne({ email: req.user.email });
   try {
     let resp = await Books.findOne({ title });
     console.log(resp,title)
-   if (!resp) {
+   if (resp == null) {
+    console.log("in")
       let temp = await axios.get(
         `https://www.googleapis.com/books/v1/volumes/${id}`
       );

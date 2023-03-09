@@ -19,7 +19,7 @@ const index = () => {
         <div className="left">
           <Profile />
         </div>
-        <div className="right outlet_wrapper">
+        <div className="display_container">
           <Outlet />
         </div>
       </div>
