@@ -30,6 +30,7 @@ module.exports = async (req, res) => {
       }
       console.log("got here illegally", addedBook);
     } else {
+      console.log("already there");
       bookId =resp._id;
     }
 
