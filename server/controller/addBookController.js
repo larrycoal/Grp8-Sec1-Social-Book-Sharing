@@ -5,8 +5,7 @@ const User = require("../model/Users");
 const UserBook = require("../model/UserBook");
 module.exports = async (req, res) => {
   const { title, type, id } = req.body;
-  console.log("title",req.body);
-  if(!title || !id) return res.status(403).json("title or id required")
+  if(!title || !id) return res.status(403).json("title and id required")
   let bookId = null;
   let user = await User.findOne({ email: req.user.email });
   try {
@@ -28,7 +27,6 @@ module.exports = async (req, res) => {
       if(addedBook){
       bookId = addedBook._id;
       }
-      console.log("got here illegally", addedBook);
     } else {
       console.log("already there");
       bookId =resp._id;
