@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 module.exports = (req, res) => {
   const { username, password } = req.body;
-
+  console.log("in login api");
   UsersData.findOne({ email: username }, (error, user) => {
     if (user) {
       bcrypt.compare(password, user.password, (error, same) => {

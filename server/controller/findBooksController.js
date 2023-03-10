@@ -15,7 +15,7 @@ module.exports = async(req, res) => {
         }
       })
     return res.status(200).json(resp);
-  }catch(err){
+  } catch (err) {
     return res.status(400).json("Something went wrong. Try again later");
   }
 };

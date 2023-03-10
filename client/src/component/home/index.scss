@@ -15,8 +15,24 @@
     }
 
     .display_container {
+        min-width: 386px;
+        max-width: 1330px;
         flex-grow: 1;
-        box-shadow: 20px 20px 50px lightgray;
         border-radius: 1rem;
     }
 }
+
+@media screen and (min-width: 640px) {
+    .home_container {
+      display: flex;
+      flex-wrap: wrap;
+
+      .display_container {
+        flex: 1;
+      }
+      .nav_container {
+        flex: 0 1 295px;
+        text-align: left;
+      }
+    }
+  }
