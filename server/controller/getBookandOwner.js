@@ -1,7 +1,8 @@
 const UserBooks = require("../model/UserBook");
-
+const user = require("../model/Users")
 module.exports = async (req, res) => {
   const { bookId } = req.query;
+<<<<<<< HEAD
   let userbook = {};
   try {
     const resp = await UserBooks.find({ bookId })
@@ -30,5 +31,8 @@ module.exports = async (req, res) => {
   } catch (err) {
     return res.status(500).json("something went wrong");
   }
+=======
+  const userbook = await UserBooks.find({ bookId }).populate("userId").populate("bookId");
+>>>>>>> 79001d1 (get book owner controller)
   return res.status(200).json(userbook);
 };
