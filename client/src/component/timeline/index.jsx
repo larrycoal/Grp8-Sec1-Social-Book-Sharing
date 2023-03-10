@@ -24,7 +24,7 @@ const index = () => {
         }
         callBooks();
 
-    });
+    },[]);
 
     const showBooks = allBooks.map((book) => {
         return (

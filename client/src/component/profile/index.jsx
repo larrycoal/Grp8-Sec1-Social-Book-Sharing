@@ -9,14 +9,12 @@ const index = () => {
 
   return (
     <div className="profile_wrapper">
-      <i className="fa-solid fa-user"></i>
-      <h4>{user?.firstName + " " + user?.lastName}</h4>
-      <div className="heading">Bio:</div>
-      <div className="bio">
-        Book worm originator, i love books and its my passion
+      <div className="top">
+        <p>Welcome back!</p>
+        <h4>{user?.firstName + " " + user?.lastName}</h4>
       </div>
-      <div className="heading">Profile:</div>
-      <ul>
+
+      <ul className="bottom">
         <li>
           <span>My books:</span>
           <span>40</span>

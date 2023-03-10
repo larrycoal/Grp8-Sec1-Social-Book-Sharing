@@ -3,7 +3,6 @@ const Books = require("../model/Books");
 const axios = require("axios")
 module.exports = async(req, res) => {
   const { title, type } = req.query;
-  console.log(title)
   try{
        let temp = await axios.get(
          `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${process.env.GOOGLE_KEY}`
