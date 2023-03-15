@@ -105,7 +105,7 @@ const index = ({ children }) => {
           </ul>
         </nav>
       </header>
-      <div className="content p-4 mt-2">{children}</div>
+      <div className="content">{children}</div>
       <footer className="footer_wrapper">group 8 project</footer>
     </div>
   );

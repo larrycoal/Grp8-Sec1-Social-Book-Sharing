@@ -9,7 +9,7 @@ import Dashboard from "../component/dashboard";
 import Mybooks from "../component/dashboard/mybooks"
 import Request from "../component/dashboard/request";
 import Borrowed from "../component/dashboard/borrowed";
-import BookDescription from "../component/timeline/bookDescription/BookDescription";
+import BookDetail from "../component/book_detail/index"
 
 const ProtectedRoute = ()=>{
   return(
@@ -33,9 +33,8 @@ export const router = createBrowserRouter([
         element: <Settings />,
       },
       {
-        path: "/description",
-        element: <BookDescription />,
-
+        path: "/detail/:id",
+        element: <BookDetail />,
       },
       {
         path: "/dashboard",

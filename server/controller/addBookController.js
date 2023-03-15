@@ -5,32 +5,32 @@ const User = require("../model/Users");
 const UserBook = require("../model/UserBook");
 module.exports = async (req, res) => {
   const { title, type, id } = req.body;
-  console.log("title",req.body);
-  if(!title || !id) return res.status(403).json("title or id required")
+  if (!title || !id) return res.status(403).json("title and id required");
   let bookId = null;
   let user = await User.findOne({ email: req.user.email });
   try {
     let resp = await Books.findOne({ title });
-    console.log(resp,title)
-   if (resp == null) {
-    console.log("in")
+    console.log(resp, title);
+    if (resp == null) {
       let temp = await axios.get(
         `https://www.googleapis.com/books/v1/volumes/${id}`
       );
-        const bookData = {
+      const desc = temp.data.volumeInfo.description.replace(/<[^>]*>/g, "");
+      const bookData = {
         title: temp.data.volumeInfo.title,
         image: temp.data.volumeInfo.imageLinks.thumbnail,
-        description: temp.data.volumeInfo.description,
+        description: desc,
         authors: temp.data.volumeInfo.authors,
+        genre: temp.data.volumeInfo.categories[0].split("/").pop(),
+        pageCount: temp.data.volumeInfo.pageCount,
       };
+
       const addedBook = await Books.create(bookData);
-      if(addedBook){
-      bookId = addedBook._id;
+      if (addedBook) {
+        bookId = addedBook._id;
       }
-      console.log("got here illegally", addedBook);
     } else {
-      console.log("already there");
-      bookId =resp._id;
+      bookId = resp._id;
     }
 
     const tempData = {
@@ -38,10 +38,10 @@ module.exports = async (req, res) => {
       userId: user?._id,
       isAvailable: true,
     };
-    const bookaddedtouser =await UserBook.create(tempData)
-    console.log("final data", bookaddedtouser);
+    const bookaddedtouser = await UserBook.create(tempData);
     return res.status(200).json(req.user);
   } catch (err) {
+    console.log(err)
     return res.status(400).json("Something went wrong. Try again later");
   }
 };

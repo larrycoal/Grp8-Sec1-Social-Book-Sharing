@@ -18,6 +18,12 @@ const BooksSchema = new Schema({
   authors: {
     type: Array,
   },
+  genre:{
+    type:String
+  },
+  pageCount:{
+    type:Number
+  }
 });
 
 const Book = mongoose.model("Book", BooksSchema);
