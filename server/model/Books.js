@@ -7,11 +7,7 @@ const BooksSchema = new Schema({
     type: String,
     required: true,
   },
-  imgthumbnail: {
-    type: String,
-    required: true,
-  },
-  img: {
+  image: {
     type: String,
     required: true,
   },

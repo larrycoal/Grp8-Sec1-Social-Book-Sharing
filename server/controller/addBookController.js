@@ -19,8 +19,7 @@ module.exports = async (req, res) => {
       );
         const bookData = {
         title: temp.data.volumeInfo.title,
-        imgthumbnail: temp.data.volumeInfo.imageLinks.thumbnail,
-        img: temp.data.volumeInfo.imageLinks.small,
+        image: temp.data.volumeInfo.imageLinks.thumbnail,
         description: temp.data.volumeInfo.description,
         authors: temp.data.volumeInfo.authors,
       };

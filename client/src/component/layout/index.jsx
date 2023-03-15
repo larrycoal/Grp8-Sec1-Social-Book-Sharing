@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import "./layout.scss";
 
 const index = ({ children }) => {
+  const [term, setTerm] = useState("");
+
   const { signout } = useContext(UserContext);
   const navigate = useNavigate();
   
@@ -12,17 +14,32 @@ const index = ({ children }) => {
     signout();
     navigate("/login");
   };
+
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
+    console.log("send",term);
+    this.props.history.push({
+      pathname: '/',
+        state: {term: term}
+    })
+  }
+
+  const handleChange = (event) => {
+    setTerm(event.target.value);
+  }
   return (
     <div className="layout_wrapper">
       <header className="header_wrapper">
         <nav>
           <div className="logo">Book Keepers</div>
           <div className="searchbar">
+          <form onSubmit={handleFormSubmit}>
             <input
               type="text"
               name="searchbar"
-              placeholder="search for books"
+              placeholder="search for books" onChange={handleChange} value={term}
             />
+            </form>
           </div>
           <ul>
             <li>
