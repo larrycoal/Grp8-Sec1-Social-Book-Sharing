@@ -7,11 +7,7 @@ const BooksSchema = new Schema({
     type: String,
     required: true,
   },
-  imgthumbnail: {
-    type: String,
-    required: true,
-  },
-  img: {
+  image: {
     type: String,
     required: true,
   },
@@ -22,6 +18,12 @@ const BooksSchema = new Schema({
   authors: {
     type: Array,
   },
+  genre:{
+    type:String
+  },
+  pageCount:{
+    type:Number
+  }
 });
 
 const Book = mongoose.model("Book", BooksSchema);

@@ -1,22 +1,19 @@
 .home_wrapper {
     width: 85vw;
-    margin: 0 auto;
+    margin: 1rem auto;
     display: flex;
+    flex-direction: column;
     gap: 2rem;
     height: 100%;
     padding: 1rem;
-    box-shadow: 0px 1px 11px 2px #f0e8e8;
-
-    .left{
-        width: 250px;
-        height: 100%;
-        border-right: 1px solid black;
-        padding: 1rem;
+    .top{
+        width: 100%;
+        height: fit-content;
+        padding: 10px;
+        box-shadow: 0px 1px 11px 2px #f0e8e8;
     }
 
-    .display_container {
-        min-width: 386px;
-        max-width: 1330px;
+    .bottom {
         flex-grow: 1;
         border-radius: 1rem;
     }

@@ -25,6 +25,7 @@ const create = ({api})=>{
     const findbooks = (params = {}) => api.get(`${baseUrl}/findBooks`, params);
     const addbook = (params = {}) => api.post(`${baseUrl}/addbook`, params);
     const getAllBooks = (params = {}) => api.get(`${baseUrl}/books`, params);
+    const getBookOwner = (params = {}) => api.get(`${baseUrl}/userbook`, params);
 
 
     return{
@@ -32,7 +33,8 @@ const create = ({api})=>{
         loginUser,
         findbooks,
         addbook,
-        getAllBooks
+        getAllBooks,
+        getBookOwner
     }
 }
 
