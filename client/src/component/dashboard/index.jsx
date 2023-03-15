@@ -18,16 +18,12 @@ const Dashboard = () => {
       const resp = await api.findbooks({ title: search });
       if (resp.ok) {
         setData(resp.data);
-        console.log("data", resp.data)
       } else {
-
       }
     } catch (err) {
       console.log(err);
     }
   };
-
-
 
   const bookDataCard = bookData.map((books) => {
     const handleClick = async (e) => {
@@ -36,31 +32,42 @@ const Dashboard = () => {
       try {
         const resp = await api.addbook({
           title: books.title,
-          id: books.id
+          id: books.id,
         });
         if (resp.ok) {
-          console.log("added book",)
+          console.log("added book");
         } else {
-  
         }
       } catch (err) {
         console.log(err);
       }
-  }
-    return (<form><div className="container-fluid p-3 borderB" key={books.id}>
-
-      <div className="row">
-        <div className="col-md-1"><img src={books.img} style={{ width: "100%" }} /></div>
-        <div className="col-md-9">
-          <div className="row p-2" name="title" value={books.title}>{books.title}</div>
-          <div className="row"><button className="btn btn-primary addButton ml-2" type="submit" onClick={handleClick}>Add</button></div>
+    };
+    return (
+      <form>
+        <div className="container-fluid p-3 borderB" key={books.id}>
+          <div className="row">
+            <div className="col-md-1">
+              <img src={books.img} style={{ width: "100%" }} />
+            </div>
+            <div className="col-md-9">
+              <div className="row p-2" name="title" value={books.title}>
+                {books.title}
+              </div>
+              <div className="row">
+                <button
+                  className="btn btn-primary addButton ml-2"
+                  type="submit"
+                  onClick={handleClick}
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-
-    </div></form>
-    )
-  })
+      </form>
+    );
+  });
 
   return (
     <div className="dashboard_wrapper">
@@ -73,17 +80,21 @@ const Dashboard = () => {
       </div>
       <div className="add_books">
         <div className="searchbooks">
-          <input type="text" name="title" placeholder="Enter Book Name"
-            value={search} onChange={e => setSearch(e.target.value)} />
-          <button class="btn btn-secondary" type="submit" onClick={searchBook}>Search</button>
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter Book Name"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <button class="btn btn-secondary" type="submit" onClick={searchBook}>
+            Search
+          </button>
         </div>
         <div className="search_result mt-4">
           Enter book title to add them to your profile
         </div>
-        <div className="mt-4">
-          {bookDataCard}
-        </div>
-
+        <div className="mt-4">{bookDataCard}</div>
       </div>
       <div className="books_activities">
         <div className="tabs">

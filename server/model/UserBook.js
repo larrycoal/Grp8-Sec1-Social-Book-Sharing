@@ -15,6 +15,7 @@ const UserBooksSchema = new Schema({
   isAvailable: {
     type: Boolean,
     required: true,
+    default:true
   },
 });
 

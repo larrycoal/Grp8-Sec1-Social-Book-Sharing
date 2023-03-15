@@ -7,7 +7,9 @@ module.exports = async(req, res) => {
        let temp = await axios.get(
          `https://www.googleapis.com/books/v1/volumes?q=${title}&key=${process.env.GOOGLE_KEY}`
        );
+       
        let resp=temp.data.items.map(item=>{
+        console.log(item.volumeInfo.imageLinks);
         return {
             id:item.id,
             title:item.volumeInfo.title,
