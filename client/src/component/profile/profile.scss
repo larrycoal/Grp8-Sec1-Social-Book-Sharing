@@ -1,6 +1,8 @@
 .profile_wrapper {
   width: 100%;
   max-height: fit-content;
+  color: white;
+
   h4 {
     text-align: left;
     margin: 0.5rem 0;
@@ -25,7 +27,7 @@
     }
     li span:nth-child(1) {
       font-weight: bold;
-      color: rgb(83, 78, 78);
+      color: white
     }
      
   }
