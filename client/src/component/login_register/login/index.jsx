@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../Context/UserContext";
-import "./login.scss"
+import Button from "../../../utils/Button";
+import "./login.scss";
 const index = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -11,10 +12,11 @@ const index = () => {
     formError: false,
     errorMessage: "",
   });
+  const [loading, setLoading] = useState(false);
 
-  const { isLoggedIn, signIn,currentUser } = useContext(UserContext);
+  const { isLoggedIn, signIn, currentUser } = useContext(UserContext);
   useEffect(() => {
-    const token = localStorage.getItem("token")
+    const token = localStorage.getItem("token");
     if (token) {
       navigate("/");
     }
@@ -28,34 +30,42 @@ const index = () => {
       };
     });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if(formData.username === "" || formData.password === ""){
-       setFormData(() => {
-         return {
-           ...formData,
-           formError: true,
-           errorMessage: "Please enter a username and/or password",
-         };
-       });
-       return
+    setLoading(true);
+    if (formData.username === "" || formData.password === "") {
+      setLoading(false);
+      setFormData(() => {
+        return {
+          ...formData,
+          formError: true,
+          errorMessage: "Please enter a username and/or password",
+        };
+      });
+      return;
     }
     const payload = {
       username: formData.username,
       password: formData.password,
     };
-    const resp = await signIn(payload);
-    if (resp === "success") {
-      navigate("/");
-    } else {
-      setFormData(() => {
-        return {
-          ...formData,
-          formError: true,
-          errorMessage: resp,
-        };
-      });
+    try {
+      const resp = await signIn(payload);
+      if (resp === "success") {
+        setLoading(false);
+        navigate("/");
+      } else {
+        setLoading(false);
+        setFormData(() => {
+          return {
+            ...formData,
+            formError: true,
+            errorMessage: resp,
+          };
+        });
+      }
+    } catch (error) {
+      setLoading(false);
     }
   };
   return (
@@ -63,16 +73,15 @@ const index = () => {
       <div>
         <h1>Book Keepers</h1>
       </div>
-      <div class="row">
+      <div>
         <h4>Trade Books from the comfort of your home</h4>
         <p>Welcome back, please login to your account</p>
       </div>
-      <form>
-        <div class="form-group row first">
+      <form className="loginform_wrapper">
+        <div>
           <label for="username">Username</label>
           <input
             type="email"
-            class="form-control mt-1 p-2"
             id="username"
             name="username"
             defaultValue={formData.username}
@@ -80,11 +89,10 @@ const index = () => {
             required
           />
         </div>
-        <div class="form-group row last mb-4 mt-4">
+        <div>
           <label for="password">Password</label>
           <input
             type="password"
-            class="form-control p-2"
             id="password"
             name="password"
             defaultValue={formData.password}
@@ -92,22 +100,24 @@ const index = () => {
             required
           />
         </div>
-        <div className="row mt-2">
-          <div className="col-12">
-            <input
-              type="submit"
-              value="Login"
-              onClick={handleSubmit}
-              class="btn btn-block btn-primary p-2"
+        <div>
+          <div>
+            <Button
+              text="Login"
+              action={handleSubmit}
+              loading={formData.loading}
             />
           </div>
         </div>
         <div className="error">
-          {
-            formData.formError? formData.errorMessage : null
-          }
+          {formData.formError ? formData.errorMessage : null}
         </div>
-        <div>Don't have an account? <Link to="/register">Create account</Link></div>
+        <div className="nfo">
+          <span> Don't have an account?</span>
+          <span>
+            <Link to="/register">Create account</Link>
+          </span>
+        </div>
       </form>
     </div>
   );

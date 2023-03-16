@@ -1,20 +1,40 @@
-.error{
-    font-size: 1rem;
-    color: red;
+.error {
+  font-size: 1rem;
+  color: red;
 }
-.login_wrapper{
-    background-color: white;
-    padding: 1rem;
-    height: 100%;
-    border-radius: 5px;
-    h1{
-        text-align: center;
+.login_wrapper {
+  background-color: white;
+  padding: 2rem;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 5px;
+  text-align: center;
+  h1 {
+    text-align: center;
+  }
+  .loginform_wrapper {
+    width: 450px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    div {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      input{
+        padding: 10px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid rgb(207, 213, 219);
+      }
+      label{
+        font-weight: bold;
+      }
     }
-    form{
-        width: 350px;
-        margin: 0 auto;
-        label{
-            font-weight: bold;
-        }
+    .nfo{
+        display: flex;
+        align-items: center;
     }
+  }
 }
