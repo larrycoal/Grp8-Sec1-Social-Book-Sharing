@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const index = () => {
   const [allBooks, setAllBooks] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -25,12 +25,16 @@ const index = () => {
     callBooks();
   }, []);
 
-  const handleBookDetail = (id)=>{
-     navigate(`/detail/${id}`)
-  }
+  const handleBookDetail = (id) => {
+    navigate(`/detail/${id}`);
+  };
   const showBooks = allBooks.map((book) => {
     return (
-      <ul key={book.id} onClick={()=>handleBookDetail(book._id)} className="book_list">
+      <ul
+        key={book.id}
+        onClick={() => handleBookDetail(book._id)}
+        className="book_list"
+      >
         <li className="book">
           <div>
             <img src={book.image} alt={book.title} />
@@ -38,10 +42,16 @@ const index = () => {
           <div>
             <h4 className="title">{book.title}</h4>
             <div className="subtitle">
-              <span className="author">authors: {...book.authors}</span>
-              <span className="genre">Genre:{book.genre}</span>
-              <span className="pagecount">Page count:{book.pageCount}</span>
+              <p className="details">
+                <span>Authors:</span>
+                <span>{...book.authors}</span>
+                <span>Genre:</span>
+                <span>{book.genre}</span>
+                <span>Pages:</span>
+                <span>{book.pageCount}</span>
+              </p>
             </div>
+            <p className="synopsis">Synopsis:</p>
             <p className="description">{book.description}</p>
           </div>
         </li>

@@ -1,3 +1,6 @@
+p,h4{
+    margin: 0;
+}
 .timeline_wrapper {
   display: flex;
   gap: 10px;
@@ -13,9 +16,25 @@
       }
       .book{
 
+        .title{
+            font-weight: bold;
+        }
+       .synopsis{
+        font-weight: bold;
+       }
         .subtitle{
             display: flex;
             gap: 10px;
+        }
+        .details{
+            display: flex;
+            gap: 5px;
+        }
+        .details span:nth-child(odd){
+            font-weight: bold;
+        }
+        .details span:nth-child(even){
+            margin: 0 5px;
         }
         .description{
             max-height: 12ch;

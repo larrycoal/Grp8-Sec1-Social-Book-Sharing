@@ -1,0 +1,38 @@
+.bookdetail_wrapper {
+  .top {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    .left {
+      height: 350px;
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+    .title {
+      font-weight: bold;
+    }
+    .subtitle {
+      display: flex;
+      gap: 5px;
+    }
+    .subtitle span:nth-child(odd) {
+      font-weight: bold;
+    }
+    .subtitle span:nth-child(even) {
+      margin: 0 5px;
+    }
+    .synopsis {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    .desc {
+      line-height: 25px;
+      letter-spacing: 0.5px;
+    }
+  }
+  .bottom{
+    margin: 1rem 0;
+  }
+}
