@@ -13,6 +13,7 @@ const addBookController = require("./controller/addBookController");
 const getBookandOwner = require("./controller/getBookandOwner");
 const getUserBook = require("./controller/getUserBook");
 const createRequestController = require("./controller/createRequestController");
+const fetchRequestController = require("./controller/fetchRequestController");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,6 +27,8 @@ app.post("/addbook", authMiddleware, addBookController);
 app.get("/userbook", authMiddleware, getBookandOwner);
 app.get("/book", authMiddleware, getUserBook);
 app.post("/requestBook", authMiddleware, createRequestController);
+app.get("/requests", authMiddleware, fetchRequestController
+);
 
 app.listen(process.env.PORT || "8080",()=>{
     console.log("server started")

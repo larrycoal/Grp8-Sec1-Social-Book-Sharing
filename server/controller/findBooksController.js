@@ -9,7 +9,6 @@ module.exports = async(req, res) => {
        );
        
        let resp=temp.data.items.map(item=>{
-        console.log(item.volumeInfo.imageLinks);
         return {
             id:item.id,
             title:item.volumeInfo.title,

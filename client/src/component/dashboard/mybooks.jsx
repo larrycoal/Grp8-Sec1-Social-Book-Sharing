@@ -1,50 +1,59 @@
-import React from 'react';
+import React, { useEffect, useCallback, useState } from "react";
 import api from "../../api";
-import { useEffect, useState } from "react";
 
 const mybooks = () => {
-    const [allBooks, setAllBooks] = useState([]);
+  const [mybooks, setMyBooks] = useState([]);
 
-    useEffect(() => {
-        async function callBooks() {
-          try {
-            const resp = await api.getUserBooks();
-            if (resp.ok) {
-                setAllBooks(resp.data);
-            } else {
-            }
-          } catch (err) {
-            console.log(err);
-          }
-        }
-        callBooks();
-      }, []);
+  const fetchUserBook = useCallback(async () => {
+    try {
+      const resp = await api.getUserBooks();
+      if (resp) {
+        const books = resp.data;
+        setMyBooks(() => {
+          return books;
+        });
+      }
+    } catch (error) {
+      console.log(err);
+    }
+  });
 
-      const showBooks = allBooks.map((book) => {
-        return (
-          <ul key={book.id} className="book_list">
-            <li className="book">
-              <div>
-                <img src={book.image} alt={book.title} />
-              </div>
-              <div>
-                <h4 className="title">{book.title}</h4>
-                <div className="subtitle">
-                  <span className="genre">Genre:{book.genre}</span>
-                  <span className="pagecount">Page count:{book.pageCount}</span>
-                </div>
-                <p className="description">{book.description}</p>
-              </div>
-            </li>
-          </ul>
-        );
-      });
-
-    return (
-        <div>
-         {showBooks}
-        </div>
-    );
+  useEffect(() => {
+    fetchUserBook();
+  }, []);
+  return (
+    <div className="mybooks_wrapper">
+      <table className="table table-hover">
+        <thead>
+          <tr>
+            <td>S/N</td>
+            <td>Image</td>
+            <td>Title</td>
+            <td>Author</td>
+            <td>Genre</td>
+          </tr>
+        </thead>
+        <tbody>
+          {mybooks?.map((book,idx) => (
+            <tr key={idx}>
+                <td>{idx+1}</td>
+              <td>
+                <img
+                  src={book?.bookId.image}
+                  alt=""
+                  height="20px"
+                  width="20px"
+                />
+              </td>
+              <td>{book?.bookId.title}</td>
+              <td>{book?.bookId.authors[0]}</td>
+              <td>{book?.bookId.genre}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 };
 
 export default mybooks;
