@@ -1,12 +1,14 @@
 import React from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useContext } from "react";
+import { BookContext } from "../../Context/BookContext";
 import "./timeline.scss";
 import api from "../../api";
 import { useNavigate } from "react-router-dom";
 
 const index = () => {
-  const [allBooks, setAllBooks] = useState([]);
+ const [allBooks, setAllBooks] = useState([]);
   const navigate = useNavigate()
+  const {bookData,getAllBooks} = useContext(BookContext)
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -23,6 +25,7 @@ const index = () => {
       }
     }
     callBooks();
+    console.log("book data",bookData);
   }, []);
 
   const handleBookDetail = (id)=>{

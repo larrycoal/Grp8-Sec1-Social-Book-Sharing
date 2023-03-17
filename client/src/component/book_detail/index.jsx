@@ -21,6 +21,10 @@ const index = () => {
   useEffect(() => {
     getBookandOwner();
   }, []);
+  
+  let descr;
+
+  console.log("descr",descr);
   return (
     <div className="bookdetail_wrapper">
       <section className="top">
@@ -28,9 +32,9 @@ const index = () => {
           <img src={bookOwner?.book?.image} alt={bookOwner?.book?.title} />
         </div>
         <div className="right">
-          <div className="title">{bookOwner?.book?.title}</div>
+          <div className="title"><h3>{bookOwner?.book?.title}</h3></div>
           <div className="subtitle">
-            <span>authors:{bookOwner?.book?.authors[0]}</span>
+            <span>Authors:{bookOwner?.book?.authors[0]}</span>
           </div>
           <div className="desc">{bookOwner?.book?.description}</div>
         </div>

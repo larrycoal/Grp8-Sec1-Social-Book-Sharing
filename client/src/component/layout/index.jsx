@@ -9,7 +9,7 @@ const index = ({ children }) => {
 
   const { signout } = useContext(UserContext);
   const navigate = useNavigate();
-  
+
   const handleSignout = () => {
     signout();
     navigate("/login");
@@ -17,11 +17,8 @@ const index = ({ children }) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log("send",term);
-    this.props.history.push({
-      pathname: '/',
-        state: {term: term}
-    })
+    console.log("send", term);
+  
   }
 
   const handleChange = (event) => {
@@ -31,14 +28,14 @@ const index = ({ children }) => {
     <div className="layout_wrapper">
       <header className="header_wrapper">
         <nav>
-          <div className="logo">Book Keepers</div>
+          <div className="logo">  <img src="/src/assets/images/capstonelogo6.1.png" height={"70px"} /></div>
           <div className="searchbar">
-          <form onSubmit={handleFormSubmit}>
-            <input
-              type="text"
-              name="searchbar"
-              placeholder="search for books" onChange={handleChange} value={term}
-            />
+            <form onSubmit={handleFormSubmit}>
+              <input
+                type="text"
+                name="searchbar"
+                placeholder="Search for books" onChange={handleChange} value={term}
+              />
             </form>
           </div>
           <ul>
@@ -106,7 +103,21 @@ const index = ({ children }) => {
         </nav>
       </header>
       <div className="content">{children}</div>
-      <footer className="footer_wrapper">group 8 project</footer>
+      {/* <footer className="footer_wrapper">group 8 project</footer> */}
+      <footer class="footer">
+        <div>
+          <a href=""><i class="fab fa-twitter footer-icon"></i></a>
+          <a href=""> <i class="fab fa-brands fa-github footer-icon"></i></a>
+          <a href="https://instagram.com/mundane_reads?igshid=YmMyMTA2M2Y="> <i
+            class="fab fa-instagram footer-icon"></i></a>
+          <a href=""> <i class="fas fa-envelope footer-icon"></i></a>
+
+        </div>
+        <div class="flex footer_marg">
+          <div>Copyright &copy; 2023 Book Keepers</div>
+        </div>
+      </footer>
+
     </div>
   );
 };
