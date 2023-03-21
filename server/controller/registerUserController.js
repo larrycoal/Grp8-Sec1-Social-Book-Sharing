@@ -1,4 +1,5 @@
 const Users = require("../model/Users");
+const ProfileImage = require("../model/ProfileImage");
 
 module.exports = async (req, res) => {
   const {
@@ -30,7 +31,10 @@ module.exports = async (req, res) => {
       city,
       postalCode,
     };
-    await Users.create(newUser);
+    await Users.create(newUser, (err, docInserted) => {
+      ProfileImage.create({ userid: docInserted._id, image: null })
+    });
+
     return res.status(200).send("succesful");
   } catch (err) {
     console.log(err);

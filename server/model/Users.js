@@ -45,7 +45,12 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
+  country: {
+    type: String,
+    required: false,
+  },
 });
+
 UsersSchema.pre("save",function(next){
   const user = this
   bcrypt.hash(user.password,10,(err,hash)=>{
@@ -53,5 +58,6 @@ UsersSchema.pre("save",function(next){
     next()
   })
 })
+
 const User = mongoose.model("User", UsersSchema, "Users");
 module.exports = User;

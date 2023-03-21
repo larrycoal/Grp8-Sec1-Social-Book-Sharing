@@ -4,18 +4,17 @@ const Schema = mongoose.Schema;
 const UserBooksSchema = new Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: "Users",
     required: true,
   },
   bookId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Book",
+    ref: "Books",
     required: true,
   },
   isAvailable: {
     type: Boolean,
     required: true,
-    default:true
   },
 });
 
