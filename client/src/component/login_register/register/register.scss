@@ -1,26 +1,9 @@
-.register_wrapper {
+.register_wrapper{
   background-color: white;
-  padding: 2rem;
-  height: fit-content;
-  text-align: center;
-  border-radius: 5px;
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    label {
-      text-align: left;
-      width: 100%;
-      font-weight: bold;
+  height: 100%;
+  padding: 1rem;
+    .error{
+        font-size: 10px;
+        color: red;
     }
-    button {
-      background-color: #452b5b;
-      color: white;
-      font-weight: bold;
-    }
-  }
-  .error {
-    font-size: 1rem;
-    color: red;
-  }
 }

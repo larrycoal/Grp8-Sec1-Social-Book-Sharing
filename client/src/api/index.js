@@ -1,6 +1,6 @@
-import apisauce from "apisauce";
-import axios from "axios";
-const baseUrl = "http://localhost:3000";
+import apisauce from 'apisauce'
+import axios from 'axios'
+const baseUrl = "http://localhost:3000"
 
 const boostrapApi = () => {
   const axiosInsance = axios.create({
@@ -19,30 +19,21 @@ const boostrapApi = () => {
   return api;
 };
 
-const create = ({ api }) => {
-  const registerUser = (params = {}) => api.post(`${baseUrl}/register`, params);
-  const loginUser = (params = {}) => api.post(`${baseUrl}/login`, params);
-  const findbooks = (params = {}) => api.get(`${baseUrl}/findBooks`, params);
-  const addbook = (params = {}) => api.post(`${baseUrl}/addbook`, params);
-  const getAllBooks = (params = {}) => api.get(`${baseUrl}/books`, params);
-  const getBookOwner = (params = {}) => api.get(`${baseUrl}/userbook`, params);
-  const makeRequest = (params = {}) =>
-    api.post(`${baseUrl}/requestBook`, params);
-  const getUserBooks = () => api.get(`${baseUrl}/book`);
-  const getRequests = () => api.get(`${baseUrl}/requests`);
+const create = ({api})=>{
+    const registerUser = (params={})=>api.post(`${baseUrl}/register`,params)
+    const loginUser = (params = {}) => api.post(`${baseUrl}/login`, params);
+    const savePersonalDetails = (params = {}) => api.post(`${baseUrl}/personaldetails`, params);
+    const fetchPersonalDetails = (params = {}) => api.get(`${baseUrl}/personaldetails/${params.userId}`);
+    const updatePersonalDetails = (params = {}) => api.put(`${baseUrl}/personaldetails/${params.userId}`, params);
 
-  return {
-    registerUser,
-    loginUser,
-    findbooks,
-    addbook,
-    getAllBooks,
-    getBookOwner,
-    makeRequest,
-    getUserBooks,
-    getRequests
-  };
-};
+    return{
+        registerUser,
+        loginUser,
+        savePersonalDetails,
+        fetchPersonalDetails,
+        updatePersonalDetails
+    }
+}
 
-const api = create({ api: boostrapApi() });
-export default api;
+const api = create({api:boostrapApi()})
+export default api

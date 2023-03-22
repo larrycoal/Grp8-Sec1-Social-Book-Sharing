@@ -5,32 +5,30 @@ const User = require("../model/Users");
 const UserBook = require("../model/UserBook");
 module.exports = async (req, res) => {
   const { title, type, id } = req.body;
-  if (!title || !id) return res.status(403).json("title and id required");
+  if(!title || !id) return res.status(403).json("title or id required")
   let bookId = null;
   let user = await User.findOne({ email: req.user.email });
   try {
     let resp = await Books.findOne({ title });
-    console.log(resp, title);
-    if (resp == null) {
+    console.log(resp,title)
+   if (!resp) {
       let temp = await axios.get(
         `https://www.googleapis.com/books/v1/volumes/${id}`
       );
-      const desc = temp.data.volumeInfo.description.replace(/<[^>]*>/g, "");
-      const bookData = {
+        const bookData = {
         title: temp.data.volumeInfo.title,
-        image: temp.data.volumeInfo.imageLinks.thumbnail,
-        description: desc,
+        imgthumbnail: temp.data.volumeInfo.imageLinks.thumbnail,
+        img: temp.data.volumeInfo.imageLinks.small,
+        description: temp.data.volumeInfo.description,
         authors: temp.data.volumeInfo.authors,
-        genre: temp.data.volumeInfo.categories[0].split("/").pop(),
-        pageCount: temp.data.volumeInfo.pageCount,
       };
-
       const addedBook = await Books.create(bookData);
-      if (addedBook) {
-        bookId = addedBook._id;
+      if(addedBook){
+      bookId = addedBook._id;
       }
+      console.log("got here illegally", addedBook);
     } else {
-      bookId = resp._id;
+      bookId =resp._id;
     }
 
     const tempData = {
@@ -38,10 +36,10 @@ module.exports = async (req, res) => {
       userId: user?._id,
       isAvailable: true,
     };
-    const bookaddedtouser = await UserBook.create(tempData);
+    const bookaddedtouser =await UserBook.create(tempData)
+    console.log("final data", bookaddedtouser);
     return res.status(200).json(req.user);
   } catch (err) {
-    console.log(err)
     return res.status(400).json("Something went wrong. Try again later");
   }
 };

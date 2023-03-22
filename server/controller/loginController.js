@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 module.exports = (req, res) => {
   const { username, password } = req.body;
+
   UsersData.findOne({ email: username }, (error, user) => {
     if (user) {
       bcrypt.compare(password, user.password, (error, same) => {
@@ -16,6 +17,7 @@ module.exports = (req, res) => {
             address: user.address,
             phoneNumber: user.phoneNumber,
             gender: user.gender,
+            userid: user._id
           };
           const accesstoken = jwt.sign(
             newUserData,

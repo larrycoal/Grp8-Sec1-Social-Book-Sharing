@@ -1,6 +1,39 @@
+.size_1 * {
+    font-size: 18px;
+}
+
+.size_2 * {
+    font-size: 20px;
+}
+
+.size_3 * {
+    font-size: 22px;
+}
+
+.size_4 * {
+    font-size: 24px;
+}
+
+.size_5 * {
+    font-size: 26px;
+}
+
+.size_6 * {
+    font-size: 28px;
+}
+
+.size_7 * {
+    font-size: 30px;
+}
+
+.size_8 * {
+    font-size: 32px;
+}
+
+
 .layout_wrapper{
     display: flex;
-    height: 100vh;
+    height: 100%;
     flex-direction: column;
     header{
        padding: 1rem 3rem;
@@ -43,9 +76,6 @@
     }
     .content{
         flex-grow: 1;
-        width: 90vw;
-        margin: 0 auto;
-        
     }
     footer{
         font-size: 1rem;
@@ -58,45 +88,31 @@
     background-color: #452B5B !important;
 }
 
-/******************* Footer Starts******************/
-
-footer {
-    height: 150px;
-    text-align: center;
-    background-color: #452B5B !important;
-    position: static;
-  }
-  
-  .footer-icon {
-    margin: 3% 2%;
-    color: #ffffff;
-    font-size: 1.2em;
+#myBtn {
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: #452b5b;
+    color: white;
     cursor: pointer;
+    padding: 15px;
+    border-radius: 4px;
   }
   
-  .footer-icon:hover {
-    color: #dda278;
+  #myBtn:hover {
+    background-color: #555;
   }
-  
-  .footer-icon:visited {
-    color: #c6f2f1;
-    margin: 3% 2%;
-    font-size: 1.2em;
-    cursor: pointer;
-  }
-  
-  .footer_marg {
-    color: #ffffff;
-  }
-  
-  .copyright {
-    color: #eaf6f6;
-    font-size: 0.8125rem;
-    margin-top: 2%;
-  }
-  
-  /****************** Footer Ends**************************/
 
-  .logo{
-    width:15%;
-  }
+.accesbilitybar {
+    display: flex;
+    width: 200px;
+    justify-content: space-between;
+}
+
+.fontBtn {
+    width: auto;
+    min-width: 30px;
+    border: 0;
+    padding: 0 5px;
+}
