@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
+import { BookContext } from "../../Context/BookContext";
 import "./layout.scss";
 
 const index = ({ children }) => {
-  const [term, setTerm] = useState("");
+  // const [term, setTerm] = useState("");
 
   const { signout } = useContext(UserContext);
+  const {term,getSearchTerm,filterBooks} = useContext(BookContext);
   const navigate = useNavigate();
 
   const handleSignout = () => {
@@ -15,26 +17,27 @@ const index = ({ children }) => {
     navigate("/login");
   };
 
-  const handleFormSubmit = (event) => {
+  const SearchFormSubmit = (event) => {
     event.preventDefault();
+    navigate("/");
+    filterBooks(term);
     console.log("send", term);
-  
   }
 
-  const handleChange = (event) => {
-    setTerm(event.target.value);
-  }
+  // const getSearchTerm = (event) => {
+  //   setTerm(event.target.value);
+  // }
   return (
     <div className="layout_wrapper">
       <header className="header_wrapper">
         <nav>
           <div className="logo">  <img src="/src/assets/images/capstonelogo6.1.png" height={"70px"} /></div>
           <div className="searchbar">
-            <form onSubmit={handleFormSubmit}>
+            <form onSubmit={SearchFormSubmit}>
               <input
                 type="text"
                 name="searchbar"
-                placeholder="Search for books" onChange={handleChange} value={term}
+                placeholder="Search for books" onChange={getSearchTerm} value={term}
               />
             </form>
           </div>

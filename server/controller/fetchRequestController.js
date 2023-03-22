@@ -18,12 +18,12 @@ module.exports = async (req, res) => {
     if (incomingRequest.length > 0) {
       const temp = incomingRequest.map((request) => {
         return {
-          firstName: request.requesterId.firstName,
-          lastName: request.requesterId.lastName,
-          email: request.requesterId.email,
-          location: request.requesterId.city,
-          gender: request.requesterId.gender,
-          book: request.bookId.title,
+          firstName: request.requesterId?.firstName,
+          lastName: request.requesterId?.lastName,
+          email: request.requesterId?.email,
+          location: request.requesterId?.city,
+          gender: request.requesterId?.gender,
+          book: request.bookId?.title,
           status: request.status,
           type: "Incoming",
         };

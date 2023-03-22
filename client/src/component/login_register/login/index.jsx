@@ -71,7 +71,7 @@ const index = () => {
   return (
     <div className="login_wrapper">
       <div>
-        <h1>Book Keepers</h1>
+      <img src="/src/assets/images/capstonelogo6black.png" height={"150px"} />
       </div>
       <div>
         <h4>Trade Books from the comfort of your home</h4>

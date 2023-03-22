@@ -49,13 +49,13 @@ const Dashboard = () => {
       <div className="container-fluid p-3 borderB" key={book.id}>
         <div className="row">
           <div className="col-md-1">
-            <img src={book.img} style={{ width: "100%" }} />
+            <img src={book?.img} style={{ width: "100%" }} />
           </div>
           <div className="col-md-9">
-            <div className="row p-2" name="title" value={book.title}>
-              {book.title}
+            <div className="row p-2" name="title" value={book?.title}>
+              {book?.title}
             </div>
-            <div className="row p-2">{book.authors[0]}</div>
+            <div className="row p-2">{...book?.authors}</div>
             <div className="row">
               <button
                 className="btn btn-primary addButton ml-2"
