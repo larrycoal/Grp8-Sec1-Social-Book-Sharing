@@ -36,6 +36,20 @@ const BookProvider = ({ children }) => {
                 setAllBooks(newArray);
             }
         },
+        filterGenre: (genreSelected) =>{
+            console.log("dddd",genreSelected);
+            if (genreSelected.length == 0) {
+                setAllBooks(booksdatabase);
+              } else {
+                var newArray = booksdatabase.filter(function (item) {
+                    console.log("d",item.genre,genreSelected.includes(item.genre));
+                    return genreSelected.includes(item.genre)
+              });
+                console.log("newarr", newArray);
+                setAllBooks(booksdatabase);
+                setAllBooks(newArray);
+              }
+        },
         getSearchTerm: (event) => {
             setTerm(event.target.value);
         },

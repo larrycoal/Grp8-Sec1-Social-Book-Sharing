@@ -31,6 +31,7 @@ module.exports = async (req, res) => {
       postalCode,
     };
     await Users.create(newUser);
+    
     return res.status(200).send("succesful");
   } catch (err) {
     console.log(err);

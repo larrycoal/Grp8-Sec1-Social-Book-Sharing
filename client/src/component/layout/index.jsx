@@ -31,7 +31,7 @@ const index = ({ children }) => {
     <div className="layout_wrapper">
       <header className="header_wrapper">
         <nav>
-          <div className="logo">  <img src="/src/assets/images/capstonelogo6.1.png" height={"70px"} /></div>
+          <div className="logo">  <img src="/src/assets/images/capstonelogo6.1.png" height={"70px"} alt="site-logo" /></div>
           <div className="searchbar">
             <form onSubmit={SearchFormSubmit}>
               <input

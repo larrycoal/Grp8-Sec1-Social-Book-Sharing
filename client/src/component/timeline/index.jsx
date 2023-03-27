@@ -8,8 +8,9 @@ import { useNavigate } from "react-router-dom";
 const index = () => {
   // const [allBooks, setAllBooks] = useState([]);
   const navigate = useNavigate();
-
-  const { term, bookData, getAllbooks } = useContext(BookContext);
+  const { term, bookData, getAllbooks,filterGenre } = useContext(BookContext);
+  const [genreSelected, setGenreSelected] = useState([]);
+  let showBooks;
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -17,12 +18,17 @@ const index = () => {
     console.log("term", term, bookData);
   }, []);
 
+
   const handleBookDetail = (id) => {
     navigate(`/detail/${id}`);
   };
-  let showBooks;
 
-  console.log("bookdataaa", bookData);
+  // const getUniqueGenres = () => {
+  //   if(bookData.indexOf(item) === -1) {
+  //     this.items.push(item);
+  //     console.log(this.items);
+  // }
+  // }
   if (bookData.length == 0) {
     showBooks = "No search results found";
     return (
@@ -65,6 +71,35 @@ const index = () => {
     });
   }
 
+  let genres = [" Dark Fantasy", " Contemporary", " Epic", " Women", " Literary"]
+
+  const handlefilterBooks = () => {
+    filterGenre(genreSelected);
+  }
+
+
+  const genresDisplay = genres.map((genre) => {
+
+    const handleSelectGenres = () => {
+      if (genreSelected.includes(genre)) {
+        const updateGenres = genreSelected.filter((genres, index) => {
+          return genre !== genres;
+        });
+        setGenreSelected(updateGenres);
+      } else {
+        const updatedGenres = [
+          ...genreSelected,
+          genre
+        ]
+        setGenreSelected(updatedGenres);
+      }
+    };
+
+    return (
+      <li style={genreSelected.includes(genre) ? {backgroundColor:'#452B5B', color:'white',cursor:'pointer'}: {backgroundColor:'#f0e8e8',cursor: 'pointer'}} onClick={handleSelectGenres}>{genre}</li>
+    )
+  })
+
   return (
     <div className="timeline_wrapper">
       <div className="left container">{showBooks}</div>
@@ -72,13 +107,10 @@ const index = () => {
         <div className="filter_wrapper">
           <p>Filter Genre</p>
           <ul>
-            <li>Fiction</li>
-            <li>Romance</li>
-            <li>Romcom</li>
-            <li>Thriller</li>
-            <li>Fantasy</li>
+            {genresDisplay}
           </ul>
-          <button>Filter Books</button>
+          <button onClick={handlefilterBooks}>Filter Books</button>
+          {/* {genreSelected} */}
         </div>
       </div>
     </div>
