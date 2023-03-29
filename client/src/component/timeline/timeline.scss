@@ -1,5 +1,6 @@
-p,h4{
-    margin: 0;
+p,
+h4 {
+  margin: 0;
 }
 .timeline_wrapper {
   display: flex;
@@ -14,61 +15,78 @@ p,h4{
         display: flex;
         gap: 15px;
       }
-      .book{
-
-        .title{
-            font-weight: bold;
+      .book {
+        .title {
+          font-weight: bold;
         }
-       .synopsis{
-        font-weight: bold;
-       }
-        .subtitle{
-            display: flex;
-            gap: 10px;
+        .synopsis {
+          font-weight: bold;
         }
-        .details{
-            display: flex;
-            gap: 5px;
+        .subtitle {
+          display: flex;
+          gap: 10px;
         }
-        .details span:nth-child(odd){
-            font-weight: bold;
+        .details {
+          display: flex;
+          gap: 5px;
         }
-        .details span:nth-child(even){
-            margin: 0 5px;
+        .details span:nth-child(odd) {
+          font-weight: bold;
         }
-        .description{
-            max-height: 12ch;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            line-height: 25px;
-            letter-spacing: .5px;
+        .details span:nth-child(even) {
+          margin: 0 5px;
+        }
+        .description {
+          max-height: 12ch;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          line-height: 25px;
+          letter-spacing: 0.5px;
         }
       }
     }
   }
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
   .filter_wrapper {
     box-shadow: 0px 1px 11px 2px #f0e8e8;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    p {
+      font-weight: bold;
+    }
     ul {
       list-style: none;
       width: 250px;
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
-      li{
+      li {
         padding: 5px 15px;
-        border: 1px solid #452B5B;
+        border: 1px solid #452b5b;
         border-radius: 10px;
       }
     }
-    button{
-        width: 100%;
-        margin: 0 10px;
-        border: none;
-        color: white;
-        background-color: #452B5B;
-        padding: 10px;
-        border-radius: 10px;
+    button {
+      width: 100%;
+    }
+  }
+  .membership_wrapper {
+    box-shadow: 0px 1px 11px 2px #f0e8e8;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    p {
+      font-weight: bold;
+    }
+    button {
+      width: 100%;
     }
   }
 }

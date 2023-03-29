@@ -14,6 +14,8 @@ const getBookandOwner = require("./controller/getBookandOwner");
 const getUserBook = require("./controller/getUserBook");
 const createRequestController = require("./controller/createRequestController");
 const fetchRequestController = require("./controller/fetchRequestController");
+const requestValidation = require("./middlewares/requestValiation");
+const updateUserMembership = require("./controller/updateUserMembership");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -26,10 +28,10 @@ app.get("/findbooks", authMiddleware, findBooksController);
 app.post("/addbook", authMiddleware, addBookController);
 app.get("/userbook", authMiddleware, getBookandOwner);
 app.get("/book", authMiddleware, getUserBook);
-app.post("/requestBook", authMiddleware, createRequestController);
+app.post("/requestBook", authMiddleware,requestValidation, createRequestController);
 app.get("/requests", authMiddleware, fetchRequestController
 );
-
+app.post("/subscribe",authMiddleware,updateUserMembership)
 app.listen(process.env.PORT || "8080",()=>{
     console.log("server started")
 })

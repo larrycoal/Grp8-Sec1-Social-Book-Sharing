@@ -6,7 +6,7 @@ const index = () => {
   useEffect(() => {
     setUser(JSON.parse(currentuser));
   }, [currentuser]);
-
+ console.log(user);
   return (
     <div className="profile_wrapper">
       <div className="profile_top">
@@ -28,8 +28,8 @@ const index = () => {
           <span>20</span>
         </li>
         <li>
-          <span>Status:</span>
-          <span>Gold</span>
+          <span>Membership:</span>
+          <span>{user?.membership}</span>
         </li>
       </ul>
     </div>

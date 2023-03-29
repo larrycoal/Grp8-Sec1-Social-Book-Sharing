@@ -1,9 +1,11 @@
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { BookContext } from "../../Context/BookContext";
+import { useNavigate } from "react-router-dom";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import "./timeline.scss";
 import api from "../../api";
-import { useNavigate } from "react-router-dom";
+import Button from "../../utils/Button";
 
 const index = () => {
   // const [allBooks, setAllBooks] = useState([]);
@@ -104,17 +106,60 @@ const index = () => {
     <div className="timeline_wrapper">
       <div className="left container">{showBooks}</div>
       <div className="right">
-        <div className="filter_wrapper">
+        <section className="filter_wrapper">
           <p>Filter Genre</p>
           <ul>
             {genresDisplay}
           </ul>
-          <button onClick={handlefilterBooks}>Filter Books</button>
           {/* {genreSelected} */}
-        </div>
+          <Button text="Filter Books" action={handlefilterBooks} />
+        </section>
+        <section className="membership_wrapper">
+          <p>Become a gold member  with just 10.00CAD to enjoy the following</p>
+          <ul>
+            <li>Unlimited book request</li>
+            <li>Email notification for new books</li>
+            <li>Priority access to request</li>
+          </ul>
+          <PayPalScriptProvider
+            options={{
+              "client-id": import.meta.env.VITE_ClientId,
+              currency:"CAD"
+            }}
+          >
+            <PayPalButtons
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      amount: {
+                        value: "10.00",
+                        currency_code: "CAD",
+                      },
+                    },
+                  ],
+                })
+              }}
+              onApprove={(data, actions) => {
+                return actions.order.capture().then(async(details) => {
+                  try {
+                    const resp = await api.subscribe()
+                  } catch (error) {
+                    
+                  }
+                  console.log(details.payer.name.given_name)
+                });
+              }}
+            />
+          </PayPalScriptProvider>
+        </section>
       </div>
     </div>
   );
 };
 
 export default index;
+
+
+//sb-wu2tf25331737@personal.example.com
+//O$0uU9cS

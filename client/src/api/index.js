@@ -30,6 +30,7 @@ const create = ({ api }) => {
     api.post(`${baseUrl}/requestBook`, params);
   const getUserBooks = () => api.get(`${baseUrl}/book`);
   const getRequests = () => api.get(`${baseUrl}/requests`);
+  const subscribe = () => api.post(`${baseUrl}/subscribe`);
 
   return {
     registerUser,
@@ -40,7 +41,8 @@ const create = ({ api }) => {
     getBookOwner,
     makeRequest,
     getUserBooks,
-    getRequests
+    getRequests,
+    subscribe
   };
 };
 
