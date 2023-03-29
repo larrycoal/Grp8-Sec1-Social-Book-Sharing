@@ -23,6 +23,17 @@ const UserProvider = ({ children }) => {
       }
     } catch (err) {}
   };
+
+  const fetchUser = async ()=>{
+    try {
+      const resp = await api.fetchUser()
+      if(resp){
+        setcurrentUser({...resp.data})
+      }
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const signout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user")
@@ -39,6 +50,7 @@ const UserProvider = ({ children }) => {
         setcurrentUser,
         signout,
         signIn,
+        fetchUser
       }}
     >
       {children}

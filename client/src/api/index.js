@@ -31,6 +31,7 @@ const create = ({ api }) => {
   const getUserBooks = () => api.get(`${baseUrl}/book`);
   const getRequests = () => api.get(`${baseUrl}/requests`);
   const subscribe = () => api.post(`${baseUrl}/subscribe`);
+  const fetchUser = () => api.get(`${baseUrl}/user`);
 
   return {
     registerUser,
@@ -42,7 +43,8 @@ const create = ({ api }) => {
     makeRequest,
     getUserBooks,
     getRequests,
-    subscribe
+    subscribe,
+    fetchUser,
   };
 };
 

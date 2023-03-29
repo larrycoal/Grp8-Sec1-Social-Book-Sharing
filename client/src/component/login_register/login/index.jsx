@@ -14,7 +14,7 @@ const index = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const { isLoggedIn, signIn, currentUser } = useContext(UserContext);
+  const {  signIn } = useContext(UserContext);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
