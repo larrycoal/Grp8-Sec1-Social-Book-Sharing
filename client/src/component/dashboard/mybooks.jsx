@@ -9,6 +9,7 @@ const mybooks = () => {
       const resp = await api.getUserBooks();
       if (resp) {
         const books = resp.data;
+        console.log(books)
         setMyBooks(() => {
           return books;
         });
@@ -39,15 +40,15 @@ const mybooks = () => {
                 <td>{idx+1}</td>
               <td>
                 <img
-                  src={book?.bookId.image}
+                  src={book?.bookId?.image}
                   alt=""
                   height="20px"
                   width="20px"
                 />
               </td>
-              <td>{book?.bookId.title}</td>
-              <td>{book?.bookId.authors[0]}</td>
-              <td>{book?.bookId.genre}</td>
+              <td>{book?.bookId?.title}</td>
+              <td>{book?.bookId?.authors[0]}</td>
+              <td>{book?.bookId?.genre}</td>
             </tr>
           ))}
         </tbody>
