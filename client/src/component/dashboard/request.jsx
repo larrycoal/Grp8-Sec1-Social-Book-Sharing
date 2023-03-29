@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import api from "../../api";
+import Button from "../../utils/Button";
 
 const request = () => {
   const [allRequest, setAllRequest] = useState([]);
@@ -42,6 +43,7 @@ const request = () => {
               <td>{request.location}</td>
               <td>{request.status}</td>
               <td>{request.type}</td>
+              <td>{request.type === "Incoming"? <Button text="Approve"/>:null}</td>
             </tr>
           ))}
         </tbody>

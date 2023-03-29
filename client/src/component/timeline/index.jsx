@@ -1,16 +1,26 @@
+<<<<<<< HEAD
 import React from "react";
 import { useEffect, useState, useContext } from "react";
 import { BookContext } from "../../Context/BookContext";
+=======
+import React, { useEffect, useState, useContext } from "react";
+>>>>>>> 151470d (use context to update user)
+import { useNavigate } from "react-router-dom";
+import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import "./timeline.scss";
 import api from "../../api";
-import { useNavigate } from "react-router-dom";
-
+import Button from "../../utils/Button";
+import { UserContext } from "../../Context/UserContext";
 const index = () => {
   // const [allBooks, setAllBooks] = useState([]);
   const navigate = useNavigate();
+<<<<<<< HEAD
   const { term, bookData, getAllbooks,filterGenre } = useContext(BookContext);
   const [genreSelected, setGenreSelected] = useState([]);
   let showBooks;
+=======
+  const { fetchUser, currentUser } = useContext(UserContext);
+>>>>>>> 151470d (use context to update user)
 
   useEffect(() => {
     // Update the document title using the browser API
@@ -104,17 +114,62 @@ const index = () => {
     <div className="timeline_wrapper">
       <div className="left container">{showBooks}</div>
       <div className="right">
-        <div className="filter_wrapper">
+        <section className="filter_wrapper">
           <p>Filter Genre</p>
           <ul>
             {genresDisplay}
           </ul>
-          <button onClick={handlefilterBooks}>Filter Books</button>
           {/* {genreSelected} */}
-        </div>
+          <Button text="Filter Books" action={handlefilterBooks} />
+        </section>
+        <section className="membership_wrapper">
+          <p>Become a gold member with just 10.00CAD to enjoy the following</p>
+          <ul>
+            <li>Unlimited book request</li>
+            <li>Email notification for new books</li>
+            <li>Priority access to request</li>
+          </ul>
+          {!currentUser?.subscribe ? (
+            <PayPalScriptProvider
+              options={{
+                "client-id": import.meta.env.VITE_ClientId,
+                currency: "CAD",
+              }}
+            >
+              <PayPalButtons
+                createOrder={(data, actions) => {
+                  return actions.order.create({
+                    purchase_units: [
+                      {
+                        amount: {
+                          value: "10.00",
+                          currency_code: "CAD",
+                        },
+                      },
+                    ],
+                  });
+                }}
+                onApprove={(data, actions) => {
+                  return actions.order.capture().then(async (details) => {
+                    try {
+                      const resp = await api.subscribe();
+                      if (resp) {
+                        await fetchUser();
+                      }
+                    } catch (error) {}
+                    console.log(details.payer.name.given_name);
+                  });
+                }}
+              />
+            </PayPalScriptProvider>
+          ) : <p>You are a Gold member</p>}
+        </section>
       </div>
     </div>
   );
 };
 
 export default index;
+
+//sb-wu2tf25331737@personal.example.com
+//O$0uU9cS

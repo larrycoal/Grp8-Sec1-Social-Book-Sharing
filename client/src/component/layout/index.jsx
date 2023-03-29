@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import { BookContext } from "../../Context/BookContext";
+import { Toast } from "../../utils/Toast";
 import "./layout.scss";
 
 const index = ({ children }) => {
@@ -106,7 +107,7 @@ const index = ({ children }) => {
         </nav>
       </header>
       <div className="content">{children}</div>
-      {/* <footer className="footer_wrapper">group 8 project</footer> */}
+      <Toast/>
       <footer class="footer">
         <div>
           <a href=""><i class="fab fa-twitter footer-icon"></i></a>
