@@ -23,4 +23,20 @@
     font-size: 1rem;
     color: red;
   }
+  .CityAutocomplete{
+    list-style: none;
+    text-align: left;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    padding-left: 9px;
+    position: absolute;
+    width: 16.8%;
+    background-color: white;
+  }
+  .cityhover{
+    cursor: pointer;
+  }
+  .cityhover :hover{
+ background-color: lightgray;
+  }
 }

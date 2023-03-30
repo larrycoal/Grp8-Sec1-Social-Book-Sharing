@@ -45,6 +45,17 @@ const Dashboard = () => {
     }
   };
   const bookDataCard = (book,idx) => {
+
+    let bookAuthors =[];
+
+    if(book.authors == undefined){
+      bookAuthors = ["Unknown"];
+    }
+    else{
+      bookAuthors = book.authors;
+    }
+
+
     return (
       <div className="container-fluid p-3 borderB" key={book.id}>
         <div className="row">
@@ -55,7 +66,8 @@ const Dashboard = () => {
             <div className="row p-2" name="title" value={book?.title}>
               {book?.title}
             </div>
-            <div className="row p-2">{...book?.authors}</div>
+            
+            <div className="row p-2">{bookAuthors}</div>
             <div className="row">
               <button
                 className="btn btn-primary addButton ml-2"

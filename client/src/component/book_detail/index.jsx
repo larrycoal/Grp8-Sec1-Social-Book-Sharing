@@ -64,6 +64,7 @@ const index = () => {
               <td>First Name</td>
               <td>Last Name</td>
               <td>Gender</td>
+              <td>City</td>
               <td>Action</td>
             </tr>
           </thead>
@@ -74,6 +75,7 @@ const index = () => {
                 <td>{owner.firstName}</td>
                 <td>{owner.lastName}</td>
                 <td>{owner.gender}</td>
+                <td>{owner.city}</td>
                 {currentUser.email !== owner.email ? (
                   <td>
                     <button
