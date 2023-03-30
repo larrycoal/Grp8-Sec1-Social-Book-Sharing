@@ -17,6 +17,8 @@ const fetchRequestController = require("./controller/fetchRequestController");
 const requestValidation = require("./middlewares/requestValiation");
 const updateUserMembership = require("./controller/updateUserMembership");
 const getUser = require("./controller/getUser");
+const getUserReceipt = require("./controller/getUserReceipt");
+const approveRequest = require("./controller/approveRequest");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,6 +36,8 @@ app.get("/requests", authMiddleware, fetchRequestController
 );
 app.post("/subscribe",authMiddleware,updateUserMembership)
 app.get("/user",authMiddleware,getUser)
+app.get("/receipt",getUserReceipt)
+app.post("/approveRequest",authMiddleware,approveRequest)
 app.listen(process.env.PORT || "8080",()=>{
     console.log("server started")
 })

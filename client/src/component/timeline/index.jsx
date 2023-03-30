@@ -1,38 +1,57 @@
-<<<<<<< HEAD
-import React from "react";
-import { useEffect, useState, useContext } from "react";
-import { BookContext } from "../../Context/BookContext";
-=======
 import React, { useEffect, useState, useContext } from "react";
->>>>>>> 151470d (use context to update user)
+import { BookContext } from "../../Context/BookContext";
 import { useNavigate } from "react-router-dom";
 import { PayPalButtons, PayPalScriptProvider } from "@paypal/react-paypal-js";
 import "./timeline.scss";
 import api from "../../api";
 import Button from "../../utils/Button";
 import { UserContext } from "../../Context/UserContext";
+import axios from "axios";
 const index = () => {
   // const [allBooks, setAllBooks] = useState([]);
   const navigate = useNavigate();
-<<<<<<< HEAD
-  const { term, bookData, getAllbooks,filterGenre } = useContext(BookContext);
+  const { term, bookData, getAllbooks, filterGenre } = useContext(BookContext);
   const [genreSelected, setGenreSelected] = useState([]);
   let showBooks;
-=======
   const { fetchUser, currentUser } = useContext(UserContext);
->>>>>>> 151470d (use context to update user)
 
   useEffect(() => {
     // Update the document title using the browser API
     getAllbooks();
-    console.log("term", term, bookData);
   }, []);
-
 
   const handleBookDetail = (id) => {
     navigate(`/detail/${id}`);
   };
 
+  const handleDownloadReceipt = async () => {
+    try {
+      const resp = fetch(
+        `http://localhost:3000/receipt?user=${JSON.stringify(currentUser)}`
+      )
+        .then((resp) => resp.arrayBuffer())
+        .then((buffer) => {
+          const blob = new Blob([buffer], { type: "application/pdf" });
+          const fileUrl = window.URL.createObjectURL(blob);
+          let alink = document.createElement("a");
+          alink.href = fileUrl;
+          alink.download = "Receipt";
+          alink.click();
+        });
+      // const resp = await api.getReceipt();
+      // if (resp) {
+      //   const blob = new Blob([resp.data], { type: "application/pdf" });
+      //   console.log(blob)
+      //   const fileUrl = window.URL.createObjectURL(blob);
+      //   let alink = document.createElement("a");
+      //   alink.href = fileUrl;
+      // //  alink.download = "Receipt";
+      // //  alink.click();
+      // }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   // const getUniqueGenres = () => {
   //   if(bookData.indexOf(item) === -1) {
   //     this.items.push(item);
@@ -45,10 +64,8 @@ const index = () => {
       <div>
         <h3>{showBooks} </h3>
       </div>
-    )
-  }
-  else {
-
+    );
+  } else {
     showBooks = bookData.map((book) => {
       return (
         <ul
@@ -81,15 +98,19 @@ const index = () => {
     });
   }
 
-  let genres = [" Dark Fantasy", " Contemporary", " Epic", " Women", " Literary"]
+  let genres = [
+    " Dark Fantasy",
+    " Contemporary",
+    " Epic",
+    " Women",
+    " Literary",
+  ];
 
   const handlefilterBooks = () => {
     filterGenre(genreSelected);
-  }
-
+  };
 
   const genresDisplay = genres.map((genre) => {
-
     const handleSelectGenres = () => {
       if (genreSelected.includes(genre)) {
         const updateGenres = genreSelected.filter((genres, index) => {
@@ -97,18 +118,24 @@ const index = () => {
         });
         setGenreSelected(updateGenres);
       } else {
-        const updatedGenres = [
-          ...genreSelected,
-          genre
-        ]
+        const updatedGenres = [...genreSelected, genre];
         setGenreSelected(updatedGenres);
       }
     };
 
     return (
-      <li style={genreSelected.includes(genre) ? {backgroundColor:'#452B5B', color:'white',cursor:'pointer'}: {backgroundColor:'#f0e8e8',cursor: 'pointer'}} onClick={handleSelectGenres}>{genre}</li>
-    )
-  })
+      <li
+        style={
+          genreSelected.includes(genre)
+            ? { backgroundColor: "#452B5B", color: "white", cursor: "pointer" }
+            : { backgroundColor: "#f0e8e8", cursor: "pointer" }
+        }
+        onClick={handleSelectGenres}
+      >
+        {genre}
+      </li>
+    );
+  });
 
   return (
     <div className="timeline_wrapper">
@@ -116,9 +143,7 @@ const index = () => {
       <div className="right">
         <section className="filter_wrapper">
           <p>Filter Genre</p>
-          <ul>
-            {genresDisplay}
-          </ul>
+          <ul>{genresDisplay}</ul>
           {/* {genreSelected} */}
           <Button text="Filter Books" action={handlefilterBooks} />
         </section>
@@ -162,7 +187,12 @@ const index = () => {
                 }}
               />
             </PayPalScriptProvider>
-          ) : <p>You are a Gold member</p>}
+          ) : (
+            <>
+              <p>You are a Gold Member</p>
+              <Button text="View Receipt" action={handleDownloadReceipt} />
+            </>
+          )}
         </section>
       </div>
     </div>

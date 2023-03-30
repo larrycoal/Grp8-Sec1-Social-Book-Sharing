@@ -14,8 +14,9 @@ module.exports = (req, res) => {
             lastName: user.lastName,
             age: user.age,
             email: user.email,
-            address: user.address,
-            phoneNumber: user.phoneNumber,
+            address: user.city,
+            province:user.province,
+            phoneNumber: user.phonenumber,
             gender: user.gender,
             membership:user.membership,
             subscribed:user.subscriptionStatus === "Subscribed"? true : false

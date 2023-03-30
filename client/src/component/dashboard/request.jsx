@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import api from "../../api";
 import Button from "../../utils/Button";
+import { toastHandler } from "../../utils/Toast";
 
 const request = () => {
   const [allRequest, setAllRequest] = useState([]);
@@ -9,6 +10,7 @@ const request = () => {
       const resp = await api.getRequests();
       if (resp.ok) {
         console.log(resp.data);
+
         setAllRequest(resp.data);
       }
     } catch (error) {}
@@ -16,6 +18,17 @@ const request = () => {
   useEffect(() => {
     fetchRequest();
   }, []);
+  const handleApproveRequest = async (requestId) => {
+    try {
+      const resp = await api.approveRequest({ requestId });
+      if (resp.ok) {
+        fetchRequest();
+        toastHandler(resp.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="request_wrapper">
       <table className="table table-hover">
@@ -43,7 +56,20 @@ const request = () => {
               <td>{request.location}</td>
               <td>{request.status}</td>
               <td>{request.type}</td>
-              <td>{request.type === "Incoming"? <Button text="Approve"/>:null}</td>
+              <td>
+                {request.type === "Incoming" ? (
+                  <Button
+                    text="Approve"
+                    disable={request.status === "Approved"}
+                    action={() => handleApproveRequest(request.id)}
+                  />
+                ) : request.status === "Approved" ? (
+                  <div>
+                    <p>You can reach {request.firstName}</p>
+                    <a href={"tel:"+ request.phoneNumber}>{request.phoneNumber}</a>
+                  </div>
+                ) : null}
+              </td>
             </tr>
           ))}
         </tbody>
