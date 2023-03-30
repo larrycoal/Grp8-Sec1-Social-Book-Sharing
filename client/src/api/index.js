@@ -30,6 +30,10 @@ const create = ({ api }) => {
     api.post(`${baseUrl}/requestBook`, params);
   const getUserBooks = () => api.get(`${baseUrl}/book`);
   const getRequests = () => api.get(`${baseUrl}/requests`);
+  const subscribe = () => api.post(`${baseUrl}/subscribe`);
+  const fetchUser = () => api.get(`${baseUrl}/user`);
+  const getReceipt = () => api.get(`${baseUrl}/receipt`);
+  const approveRequest = (params={}) => api.post(`${baseUrl}/approveRequest`,params);
 
   return {
     registerUser,
@@ -40,7 +44,11 @@ const create = ({ api }) => {
     getBookOwner,
     makeRequest,
     getUserBooks,
-    getRequests
+    getRequests,
+    subscribe,
+    fetchUser,
+    getReceipt,
+    approveRequest,
   };
 };
 

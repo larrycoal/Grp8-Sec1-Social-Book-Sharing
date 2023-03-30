@@ -9,13 +9,17 @@ module.exports = (req, res) => {
       bcrypt.compare(password, user.password, (error, same) => {
         if (same) {
           const newUserData = {
+            id:user._id,
             firstName: user.firstName,
             lastName: user.lastName,
             age: user.age,
             email: user.email,
-            address: user.address,
-            phoneNumber: user.phoneNumber,
+            address: user.city,
+            province:user.province,
+            phoneNumber: user.phonenumber,
             gender: user.gender,
+            membership:user.membership,
+            subscribed:user.subscriptionStatus === "Subscribed"? true : false
           };
           const accesstoken = jwt.sign(
             newUserData,

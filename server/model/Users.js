@@ -45,6 +45,14 @@ const UsersSchema = new Schema({
     type: String,
     required: true,
   },
+  membership:{
+    type:String,
+    default:"Silver"
+  },
+  subscriptionStatus:{
+    type:String,
+    default:"NotSubscribed"
+  }
 });
 UsersSchema.pre("save",function(next){
   const user = this

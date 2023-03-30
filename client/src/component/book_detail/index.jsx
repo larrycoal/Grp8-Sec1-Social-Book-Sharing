@@ -1,10 +1,13 @@
 import React, { useEffect, useCallback, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
+import Button from "../../utils/Button";
+import { toastHandler } from "../../utils/Toast";
 import "./bookdetail.scss";
 
 const index = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [bookOwner, setBookOwner] = useState({});
   const currentUser = JSON.parse(localStorage.getItem("user"));
   const getBookandOwner = useCallback(async () => {
@@ -27,9 +30,10 @@ const index = () => {
     try {
       const resp = await api.makeRequest({ ownerId, bookId });
       if (resp.ok) {
-        console.log(resp);
-        //TODO: use toast to show succesful request
-        //TODO:redirect to home
+        toastHandler("Request made succesfully");
+        navigate("/");
+      } else {
+        toastHandler(resp.data);
       }
     } catch (err) {
       console.log(err);
@@ -78,15 +82,16 @@ const index = () => {
                 <td>{owner.city}</td>
                 {currentUser.email !== owner.email ? (
                   <td>
-                    <button
-                      onClick={() =>
+                    <Button
+                      text="Request"
+                      action={() =>
                         handleMakeRequest(bookOwner.book._id, owner.id)
                       }
-                    >
-                      Request
-                    </button>
+                    />
                   </td>
-                ) : <td></td>}
+                ) : (
+                  <td></td>
+                )}
               </tr>
             ))}
           </tbody>

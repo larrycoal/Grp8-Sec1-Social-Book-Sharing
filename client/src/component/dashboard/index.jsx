@@ -5,6 +5,7 @@ import api from "../../api";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import "./dashboard.scss";
 import Button from "../../utils/Button";
+import { toastHandler } from "../../utils/Toast";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -19,6 +20,7 @@ const Dashboard = () => {
     try {
       const resp = await api.findbooks({ title: search });
       if (resp.ok) {
+        console.log(resp.data);
         setloading(false);
         setData(resp.data);
       } else {
@@ -30,14 +32,15 @@ const Dashboard = () => {
     }
   };
   const handleClick = async (book) => {
-    console.log(book)
+    console.log(book);
     try {
       const resp = await api.addbook({
         title: book.title,
         id: book.id,
       });
       if (resp.ok) {
-        navigate("/")
+        toastHandler("Book added successfully");
+        navigate("/");
       } else {
       }
     } catch (err) {
@@ -57,17 +60,18 @@ const Dashboard = () => {
 
 
     return (
-      <div className="container-fluid p-3 borderB" key={book.id}>
+      <div className="container-fluid p-3 borderB" key={book?.id}>
         <div className="row">
           <div className="col-md-1">
             <img src={book?.img} style={{ width: "100%" }} />
           </div>
           <div className="col-md-9">
             <div className="row p-2" name="title" value={book?.title}>
-              {book?.title}
+              {book.title}
             </div>
-            
-            <div className="row p-2">{bookAuthors}</div>
+            <div className="row p-2">
+              {book?.authors ? book?.authors[0] : null}
+            </div>
             <div className="row">
               <button
                 className="btn btn-primary addButton ml-2"
