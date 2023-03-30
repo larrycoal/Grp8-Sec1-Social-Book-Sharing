@@ -32,7 +32,8 @@ const create = ({ api }) => {
   const getRequests = () => api.get(`${baseUrl}/requests`);
   const subscribe = () => api.post(`${baseUrl}/subscribe`);
   const fetchUser = () => api.get(`${baseUrl}/user`);
-  const getReceipt = () => api.get(`${baseUrl}/receipt`,{responseType:arraybuffer});
+  const getReceipt = () => api.get(`${baseUrl}/receipt`);
+  const approveRequest = (params={}) => api.post(`${baseUrl}/approveRequest`,params);
 
   return {
     registerUser,
@@ -47,6 +48,7 @@ const create = ({ api }) => {
     subscribe,
     fetchUser,
     getReceipt,
+    approveRequest,
   };
 };
 
