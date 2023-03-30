@@ -18,6 +18,7 @@ module.exports = async (req, res) => {
     if (incomingRequest.length > 0) {
       const temp = incomingRequest.map((request) => {
         return {
+          id:request?._id,
           firstName: request.requesterId?.firstName,
           lastName: request.requesterId?.lastName,
           email: request.requesterId?.email,
@@ -34,6 +35,7 @@ module.exports = async (req, res) => {
     if (outgoingRequest) {
       const temp = outgoingRequest.map((request) => {
         return {
+          id:request._id,
           firstName: request.ownerId?.firstName,
           lastName: request.ownerId?.lastName,
           email: request.ownerId?.email,

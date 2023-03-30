@@ -8,7 +8,6 @@ const request = () => {
     try {
       const resp = await api.getRequests();
       if (resp.ok) {
-        console.log(resp.data);
         setAllRequest(resp.data);
       }
     } catch (error) {}
