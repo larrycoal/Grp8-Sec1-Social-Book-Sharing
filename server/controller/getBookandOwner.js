@@ -20,6 +20,8 @@ module.exports = async (req, res) => {
           phoneNumber: userId.phoneNumber,
           gender: userId.gender,
           email: userId.email,
+          city: userId.city,
+          province: userId.province,
           id:userId._id
         };
       });

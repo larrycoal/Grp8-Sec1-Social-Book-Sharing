@@ -10,7 +10,7 @@ import axios from "axios";
 const index = () => {
   // const [allBooks, setAllBooks] = useState([]);
   const navigate = useNavigate();
-  const { term, bookData, getAllbooks, filterGenre } = useContext(BookContext);
+  const { term, bookData, getAllbooks, filterGenre,booksdatabase} = useContext(BookContext);
   const [genreSelected, setGenreSelected] = useState([]);
   let showBooks;
   const { fetchUser, currentUser } = useContext(UserContext);
@@ -98,17 +98,20 @@ const index = () => {
     });
   }
 
-  let genres = [
-    " Dark Fantasy",
-    " Contemporary",
-    " Epic",
-    " Women",
-    " Literary",
-  ];
+  let genres = []
+  const getUniqueGenres = () => {
+    for (let i = 0; i < booksdatabase.length; i++) {
+      if(!(genres.includes(booksdatabase[i].genre))){
+        genres.push(booksdatabase[i].genre)
+      }
+    }
+  }
+
+  getUniqueGenres();
 
   const handlefilterBooks = () => {
     filterGenre(genreSelected);
-  };
+  }
 
   const genresDisplay = genres.map((genre) => {
     const handleSelectGenres = () => {

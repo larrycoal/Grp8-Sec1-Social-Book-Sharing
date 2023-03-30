@@ -3,8 +3,25 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../../../api";
 import Button from "../../../utils/Button";
 import "./register.scss";
+import { Country, State, City } from 'country-state-city';
+import { filter } from "domutils";
+import Select from 'react-select'
+// console.log("country", State.getStatesOfCountry("CA"))
+//console.log("state", City.getCitiesOfState("CA", "ON"))
+
+
 const index = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [cityDisplay, setcityDisplay] = useState([]);
+  const [selectedOption, setSelectedOption] = useState({});
+  const Provinces = State.getStatesOfCountry("CA");
+  let CityList ; 
+  const DisplayProvinces = Provinces.map((province) => {
+    return (<option value={province.name} key={province.isoCode} >{province.name}</option>)
+  })
+
+
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -21,7 +38,6 @@ const index = () => {
     formError: false,
     errorMessage: "",
   });
-  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -29,15 +45,36 @@ const index = () => {
     }
   }, []);
 
+
   const handleChange = (e) => {
+ 
+
+    if(e.target.name == "province"){
+     for(let i=0;i<Provinces.length;i++){
+      if(e.target.value == Provinces[i].name){
+        CityList = City.getCitiesOfState(Provinces[i].countryCode, Provinces[i].isoCode);
+      }
+     }
+     let getListOfCities = () => {
+      let cities = [];
+      for (let i = 0; i < CityList.length; i++) {
+        cities.push({value: CityList[i].name, label:CityList[i].name});
+      }
+      return cities;
+    }
+     setcityDisplay(getListOfCities());
+    }
+
     setFormData(() => {
       return {
         ...formData,
         [e.target.name]: e.target.value,
+        city:selectedOption.value,
         formError: false,
         errorMessage: "",
       };
     });
+    console.log("form",formData);
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -100,7 +137,7 @@ const index = () => {
   return (
     <div className="register_wrapper">
       <div>
-      <img src="/src/assets/images/capstonelogo6black.png" height={"150px"} />
+        <img src="/src/assets/images/capstonelogo6black.png" height={"150px"} />
       </div>
       <div>
         <h4>Trade Books from the comfort of your home</h4>
@@ -179,15 +216,16 @@ const index = () => {
           </div>
           <div className="col-md-6">
             <label for="email">Province</label>
-            <input
-              type="text"
-              class="form-control mt-1 p-2"
+         
+            <select aria-label="Default select example" class="form-control mt-1 p-2"
               id="province"
               name="province"
               defaultValue={formData.province}
               onChange={handleChange}
-              required
-            />
+              required>
+              <option selected disabled value="">Select Province</option>
+              {DisplayProvinces}
+            </select>
           </div>
         </div>
         <div class="row">
@@ -205,7 +243,12 @@ const index = () => {
           </div>
           <div className="col-md-6">
             <label for="city">City</label>
-            <input
+            <Select options={cityDisplay}  placeholder="Select City"  id="city"
+              name="city"
+              defaultValue={formData.city}
+              onChange={setSelectedOption}
+              required/>
+            {/* <input
               type="text"
               class="form-control mt-1 p-2"
               id="city"
@@ -214,6 +257,9 @@ const index = () => {
               onChange={handleChange}
               required
             />
+            <ul className="CityAutocomplete">
+              {DisplayCities()}
+            </ul> */}
           </div>
         </div>
         <div class="row">

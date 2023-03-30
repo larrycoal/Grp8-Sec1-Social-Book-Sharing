@@ -12,6 +12,7 @@ const BookProvider = ({ children }) => {
     const valueToShare = {
         term,
         bookData,
+        booksdatabase,
         getAllbooks: async () => {
             try {
                 const resp = await api.getAllBooks();
@@ -37,7 +38,6 @@ const BookProvider = ({ children }) => {
             }
         },
         filterGenre: (genreSelected) =>{
-            console.log("dddd",genreSelected);
             if (genreSelected.length == 0) {
                 setAllBooks(booksdatabase);
               } else {

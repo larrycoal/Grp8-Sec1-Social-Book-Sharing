@@ -47,7 +47,18 @@ const Dashboard = () => {
       console.log(err);
     }
   };
-  const bookDataCard = (book, idx) => {
+  const bookDataCard = (book,idx) => {
+
+    let bookAuthors =[];
+
+    if(book.authors == undefined){
+      bookAuthors = ["Unknown"];
+    }
+    else{
+      bookAuthors = book.authors;
+    }
+
+
     return (
       <div className="container-fluid p-3 borderB" key={book?.id}>
         <div className="row">
