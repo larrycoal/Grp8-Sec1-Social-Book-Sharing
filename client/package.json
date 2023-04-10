@@ -20,6 +20,7 @@
     "bootstrap-icons": "^1.10.3",
     "country-state-city": "^3.1.2",
     "dotenv": "^16.0.3",
+    "esbuild": "^0.17.15",
     "pdfkit": "^0.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
