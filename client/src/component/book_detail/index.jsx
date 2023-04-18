@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState,useContext } from "react";
+import React, { useEffect, useCallback, useState, useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
 import { UserContext } from "../../Context/UserContext";
@@ -10,8 +10,10 @@ const index = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [bookOwner, setBookOwner] = useState({});
-    const {currentUser } = useContext(UserContext);
-    console.log(currentUser)
+  const [searchCity, setSearchCity] = useState("");
+  const [bookOwnercopy, setBookOwnercopy] = useState({});
+  const { currentUser } = useContext(UserContext);
+
   const getBookandOwner = useCallback(async () => {
     try {
       const resp = await api.getBookOwner({ bookId: id });
@@ -19,11 +21,36 @@ const index = () => {
         setBookOwner(() => {
           return { ...resp.data };
         });
+        setBookOwnercopy(() => {
+          return { ...resp.data };
+        });
       }
     } catch (err) {
       console.log(err);
     }
   });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("bookownercopy", bookOwnercopy);
+    if (searchCity == "") {
+      setBookOwner(bookOwnercopy);
+    } else {
+      var newArray = bookOwnercopy.owners?.filter(function (item) {
+        console.log("inss", searchCity, item.title);
+        return item.city.toLowerCase().includes(searchCity.toLowerCase());
+      });
+      if (newArray.length == 0) {
+        setBookOwner({ ...bookOwnercopy, owners: [] });
+      } else {
+        setBookOwner({ ...bookOwnercopy, owners: newArray });
+      }
+    }
+    console.log("ece", searchCity);
+  };
+
+  const handleChange = (e) => {
+    setSearchCity(e.target.value);
+  };
   useEffect(() => {
     getBookandOwner();
   }, []);
@@ -63,6 +90,22 @@ const index = () => {
       </section>
       <section className="bottom">
         <h4>Owners</h4>
+        <form onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="col-md-8"></div>
+
+            <div className="col-md-2">
+              <b>Search by City Name</b>{" "}
+            </div>
+            <div className="col-md-1">
+              <input
+                placeholder="Enter City Name"
+                value={searchCity}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+        </form>
         <table className="table table-hover">
           <thead>
             <tr>
@@ -85,7 +128,7 @@ const index = () => {
                 {currentUser.email !== owner.email ? (
                   <td>
                     <Button
-                      disable={!currentUser.subscribed}
+                      disable={currentUser.subscribed}
                       text="Request"
                       action={() =>
                         handleMakeRequest(bookOwner.book._id, owner.id)

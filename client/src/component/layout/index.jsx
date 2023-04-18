@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { SocialIcon } from "react-social-icons";
+
 import { UserContext } from "../../Context/UserContext";
 import { BookContext } from "../../Context/BookContext";
 import "./layout.scss";
@@ -10,6 +12,8 @@ const index = ({ children }) => {
 
   const { signout } = useContext(UserContext);
   const { term, getSearchTerm, filterBooks } = useContext(BookContext);
+    const [fontSize, setfontSize] = useState(4);
+
   const navigate = useNavigate();
 
   const handleSignout = () => {
@@ -23,17 +27,24 @@ const index = ({ children }) => {
     filterBooks(term);
     console.log("send", term);
   };
+const increaseFontSize = () => {
+  if (fontSize >= 1 && fontSize < 8) {
+    setfontSize(fontSize + 1);
+  }
+};
 
+const decreaseFontSize = () => {
+  if (fontSize < 8 && fontSize >= 1) {
+    setfontSize(fontSize - 1);
+  }
+};
 
   return (
-    <div className="layout_wrapper">
+    <div className={`layout_wrapper size_${fontSize}`}>
       <header className="header_wrapper">
         <nav>
           <div className="logo">
-            <img
-              src="/src/assets/images/capstonelogo6.1.png"
-              alt="site-logo"
-            />
+            <img src="/src/assets/images/capstonelogo6.1.png" alt="site-logo" />
           </div>
           <div className="searchbar">
             <form onSubmit={SearchFormSubmit}>
@@ -45,6 +56,29 @@ const index = ({ children }) => {
                 value={term}
               />
             </form>
+          </div>
+          <div className="accesbilitybar">
+            <button
+              className="fontBtn"
+              onClick={increaseFontSize}
+              style={{ padding: "5px" }}
+            >
+              +
+            </button>
+            <button
+              className="fontBtn"
+              onClick={() => setfontSize(4)}
+              style={{ padding: "5px" }}
+            >
+              reset
+            </button>
+            <button
+              className="fontBtn"
+              onClick={decreaseFontSize}
+              style={{ padding: "5px" }}
+            >
+              -
+            </button>
           </div>
           <ul>
             <li>
@@ -116,22 +150,70 @@ const index = ({ children }) => {
       <div className="content">{children}</div>
 
       <footer class="footer">
-        <div>
-          <a href="">
-            <i class="fab fa-twitter footer-icon"></i>
-          </a>
-          <a href="">
-            <i class="fab fa-brands fa-github footer-icon"></i>
-          </a>
-          <a href="https://instagram.com/mundane_reads?igshid=YmMyMTA2M2Y=">
-            <i class="fab fa-instagram footer-icon"></i>
-          </a>
-          <a href="">
-            <i class="fas fa-envelope footer-icon"></i>
-          </a>
-        </div>
-        <div class="flex footer_marg">
-          <div>Copyright &copy; 2023 Book Keepers</div>
+        <div className="container">
+          <div className="row">
+            <div className="col">
+              <img
+                className="footerimg"
+                src="/src/assets/images/capstonelogo6.1.png"
+                alt="logo"
+              />
+              <p className="para">
+                Worlds First digtial De-centeralised Library. Buy, Sell and
+                discover exclusive books
+              </p>
+            </div>
+            <div className="col">
+              <h6 className="qq">Legal</h6>
+              <ul>
+                <li className="list">Privacy Notice</li>
+                <li className="list">Terms of Use</li>
+              </ul>
+            </div>
+            <div className="col">
+              <h4 className="heading">Follow Us</h4>
+              <ul className="icons">
+                <li>
+                  <SocialIcon
+                    url="https://twitter.com/jaketrent"
+                    bgColor="white"
+                  />
+                </li>
+                <li>
+                  <SocialIcon
+                    url="https://facebook.com/jaketrent"
+                    bgColor="white"
+                  />
+                </li>
+                <li>
+                  <SocialIcon
+                    url="https://linkedin.com/in/jaketrent"
+                    bgColor="	white"
+                  />
+                </li>
+                <li>
+                  <SocialIcon
+                    url="https://instagram.com/in/jaketrent"
+                    bgColor="white"
+                  />
+                </li>
+              </ul>
+              {/* <h6>Subcription for Book Keeper</h6>
+              <input type={'email'} placeholder='Enter Book Name'></input>
+              <button className="button">Enter</button>
+              <p className="para1">Discover, Read and Collect Exclusive Books</p> */}
+            </div>
+          </div>
+          <div>
+            <p className="copyright-text">
+              Copyright &copy; 2023 All Rights Reserved by
+              <img
+                className="footerwhitelogo"
+                src="/src/assets/images/capstonelogo6.1.png"
+                alt="logo"
+              />
+            </p>
+          </div>
         </div>
       </footer>
     </div>
