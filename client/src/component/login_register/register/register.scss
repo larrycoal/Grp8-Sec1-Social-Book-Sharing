@@ -40,3 +40,16 @@
  background-color: lightgray;
   }
 }
+@media screen and (max-width: 450px) {
+  .register_wrapper{
+    img{
+      height: 100px;
+    }
+    h4{
+      font-size: 18px;
+    }
+    height: 90%;
+    width: 90%;
+    overflow: scroll;
+  }
+}

@@ -19,7 +19,8 @@ module.exports = async (req, res) => {
           subscribe:currentUser[0].subscriptionStatus === "Subscribed" ? true : false,
           bookCount:userBook.length,
           borrowedBooks:0,
-          pendingRequest:0
+          pendingRequest:0,
+          accountVerified:currentUser[0].accountVerified
         };
       return res.status(200).json(userTemp);
     }

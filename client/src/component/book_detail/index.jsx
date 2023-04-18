@@ -1,6 +1,7 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useCallback, useState,useContext } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
+import { UserContext } from "../../Context/UserContext";
 import Button from "../../utils/Button";
 import { toastHandler } from "../../utils/Toast";
 import "./bookdetail.scss";
@@ -9,7 +10,8 @@ const index = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [bookOwner, setBookOwner] = useState({});
-  const currentUser = JSON.parse(localStorage.getItem("user"));
+    const {currentUser } = useContext(UserContext);
+    console.log(currentUser)
   const getBookandOwner = useCallback(async () => {
     try {
       const resp = await api.getBookOwner({ bookId: id });
@@ -83,6 +85,7 @@ const index = () => {
                 {currentUser.email !== owner.email ? (
                   <td>
                     <Button
+                      disable={!currentUser.subscribed}
                       text="Request"
                       action={() =>
                         handleMakeRequest(bookOwner.book._id, owner.id)

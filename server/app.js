@@ -19,6 +19,8 @@ const updateUserMembership = require("./controller/updateUserMembership");
 const getUser = require("./controller/getUser");
 const getUserReceipt = require("./controller/getUserReceipt");
 const approveRequest = require("./controller/approveRequest");
+const verifyMiddleware = require("./middlewares/verifyMiddleware");
+const verifyUser = require("./controller/verifyUser");
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,6 +40,7 @@ app.post("/subscribe",authMiddleware,updateUserMembership)
 app.get("/user",authMiddleware,getUser)
 app.get("/receipt",getUserReceipt)
 app.post("/approveRequest",authMiddleware,approveRequest)
+app.get("/verify/:id",verifyUser)
 app.listen(process.env.PORT || "8080",()=>{
     console.log("server started")
 })

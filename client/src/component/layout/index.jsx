@@ -3,14 +3,13 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../Context/UserContext";
 import { BookContext } from "../../Context/BookContext";
-import { Toast } from "../../utils/Toast";
 import "./layout.scss";
 
 const index = ({ children }) => {
   // const [term, setTerm] = useState("");
 
   const { signout } = useContext(UserContext);
-  const {term,getSearchTerm,filterBooks} = useContext(BookContext);
+  const { term, getSearchTerm, filterBooks } = useContext(BookContext);
   const navigate = useNavigate();
 
   const handleSignout = () => {
@@ -23,22 +22,27 @@ const index = ({ children }) => {
     navigate("/");
     filterBooks(term);
     console.log("send", term);
-  }
+  };
 
-  // const getSearchTerm = (event) => {
-  //   setTerm(event.target.value);
-  // }
+
   return (
     <div className="layout_wrapper">
       <header className="header_wrapper">
         <nav>
-          <div className="logo">  <img src="/src/assets/images/capstonelogo6.1.png" height={"70px"} alt="site-logo" /></div>
+          <div className="logo">
+            <img
+              src="/src/assets/images/capstonelogo6.1.png"
+              alt="site-logo"
+            />
+          </div>
           <div className="searchbar">
             <form onSubmit={SearchFormSubmit}>
               <input
                 type="text"
                 name="searchbar"
-                placeholder="Search for books" onChange={getSearchTerm} value={term}
+                placeholder="Search for books"
+                onChange={getSearchTerm}
+                value={term}
               />
             </form>
           </div>
@@ -104,24 +108,32 @@ const index = ({ children }) => {
               Logout
             </li>
           </ul>
+          <div className="hamburger">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </div>
         </nav>
       </header>
       <div className="content">{children}</div>
-      <Toast/>
+
       <footer class="footer">
         <div>
-          <a href=""><i class="fab fa-twitter footer-icon"></i></a>
-          <a href=""> <i class="fab fa-brands fa-github footer-icon"></i></a>
-          <a href="https://instagram.com/mundane_reads?igshid=YmMyMTA2M2Y="> <i
-            class="fab fa-instagram footer-icon"></i></a>
-          <a href=""> <i class="fas fa-envelope footer-icon"></i></a>
-
+          <a href="">
+            <i class="fab fa-twitter footer-icon"></i>
+          </a>
+          <a href="">
+            <i class="fab fa-brands fa-github footer-icon"></i>
+          </a>
+          <a href="https://instagram.com/mundane_reads?igshid=YmMyMTA2M2Y=">
+            <i class="fab fa-instagram footer-icon"></i>
+          </a>
+          <a href="">
+            <i class="fas fa-envelope footer-icon"></i>
+          </a>
         </div>
         <div class="flex footer_marg">
           <div>Copyright &copy; 2023 Book Keepers</div>
         </div>
       </footer>
-
     </div>
   );
 };

@@ -1,23 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import LoginRegister from "../component/login_register";
 import Register from "../component/login_register/register";
-import Home from "../component/home"
-import Login from "../component/login_register/login"
-import Timeline from "../component/timeline"
-import Settings from "../component/settings"
+import Home from "../component/home";
+import Login from "../component/login_register/login";
+import Timeline from "../component/timeline";
+import Settings from "../component/settings";
 import Dashboard from "../component/dashboard";
-import Mybooks from "../component/dashboard/mybooks"
+import Mybooks from "../component/dashboard/mybooks";
 import Request from "../component/dashboard/request";
 import Borrowed from "../component/dashboard/borrowed";
-import BookDetail from "../component/book_detail/index"
-
-const ProtectedRoute = ()=>{
-  return(
-    <></>
-  )
-}
-
-
+import BookDetail from "../component/book_detail/index";
+import VerifyUser from "../component/verify_page/index";
 
 export const router = createBrowserRouter([
   {
@@ -69,5 +62,9 @@ export const router = createBrowserRouter([
         element: <Register />,
       },
     ],
+  },
+  {
+    path: "/verify/:accessToken",
+    element: <VerifyUser />
   },
 ]);

@@ -1,4 +1,5 @@
 const Users = require("../model/Users");
+const sendMail = require("../utils/verificationMailHandler");
 
 module.exports = async (req, res) => {
   const {
@@ -30,8 +31,8 @@ module.exports = async (req, res) => {
       city,
       postalCode,
     };
-    await Users.create(newUser);
-    
+    const createdUser = await Users.create(newUser);
+    sendMail(createdUser)
     return res.status(200).send("succesful");
   } catch (err) {
     console.log(err);

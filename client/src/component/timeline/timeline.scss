@@ -90,3 +90,47 @@ h4 {
     }
   }
 }
+@media screen and (max-width: 500px) {
+  .timeline_wrapper {
+    .right {
+      display: none;
+    }
+    .book_list {
+      padding: 1rem;
+      border-bottom: 1px solid #452b5b;
+      .book {
+        flex-direction: column;
+        & div:nth-child(1) {
+          display: flex;
+          order: 2;
+          img {
+            width: 100%;
+            max-height: 300px;
+            object-fit: contain;
+            aspect-ratio: 4/3;
+          }
+        }
+        & div:nth-child(2){
+         .subtitle .details{
+          flex-wrap: wrap;
+          align-items: flex-end;
+          gap: 2px;
+          span{
+            min-width: 15%
+          }
+          & span:nth-child(odd){
+            font-size: 15px;
+          }
+          & span:nth-child(even){
+            font-size: 14px;
+          }
+         }
+        }
+        .description{
+          font-size: 1rem;
+        }
+      }
+    }
+   
+  }
+}

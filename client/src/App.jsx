@@ -6,6 +6,7 @@ import { router } from "./routes";
 import api from "./api";
 import {UserProvider} from "./Context/UserContext";
 import { BookProvider } from "./Context/BookContext";
+import { Toast } from "./utils/Toast";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <RouterProvider router={router} />
         </BookProvider>
       </UserProvider>
+      <Toast/>
     </div>
   );
 }

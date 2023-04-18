@@ -29,6 +29,7 @@ const UserProvider = ({ children }) => {
       const resp = await api.fetchUser()
       if(resp){
         setcurrentUser({...resp.data})
+        return {...resp.data}
       }
     } catch (error) {
       console.log(error)

@@ -18,6 +18,7 @@ const index = () => {
   useEffect(() => {
     // Update the document title using the browser API
     getAllbooks();
+    fetchUser()
   }, []);
 
   const handleBookDetail = (id) => {
@@ -38,16 +39,6 @@ const index = () => {
           alink.download = "Receipt";
           alink.click();
         });
-      // const resp = await api.getReceipt();
-      // if (resp) {
-      //   const blob = new Blob([resp.data], { type: "application/pdf" });
-      //   console.log(blob)
-      //   const fileUrl = window.URL.createObjectURL(blob);
-      //   let alink = document.createElement("a");
-      //   alink.href = fileUrl;
-      // //  alink.download = "Receipt";
-      // //  alink.click();
-      // }
     } catch (err) {
       console.log(err);
     }

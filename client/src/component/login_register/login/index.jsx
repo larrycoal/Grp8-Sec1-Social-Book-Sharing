@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../../../Context/UserContext";
 import Button from "../../../utils/Button";
+import { toastHandler } from "../../../utils/Toast";
 import "./login.scss";
 const index = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const index = () => {
   });
   const [loading, setLoading] = useState(false);
 
-  const {  signIn } = useContext(UserContext);
+  const { signIn, currentUser, fetchUser } = useContext(UserContext);
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -52,8 +53,15 @@ const index = () => {
     try {
       const resp = await signIn(payload);
       if (resp === "success") {
+        const { accountVerified } = await fetchUser();
         setLoading(false);
-        navigate("/");
+        console.log(accountVerified)
+        if (accountVerified === undefined) return navigate("/");
+        if (accountVerified) {
+          navigate("/");
+        } else {
+          toastHandler("Please verify your account");
+        }
       } else {
         setLoading(false);
         setFormData(() => {
@@ -71,7 +79,7 @@ const index = () => {
   return (
     <div className="login_wrapper">
       <div>
-      <img src="/src/assets/images/capstonelogo6black.png" height={"150px"} />
+        <img src="/src/assets/images/capstonelogo6black.png" height={"150px"} />
       </div>
       <div>
         <h4>Trade Books from the comfort of your home</h4>

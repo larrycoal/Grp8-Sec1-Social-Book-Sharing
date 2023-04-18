@@ -52,6 +52,10 @@ const UsersSchema = new Schema({
   subscriptionStatus:{
     type:String,
     default:"NotSubscribed"
+  },
+  accountVerified:{
+    type:Boolean,
+    default:false,
   }
 });
 UsersSchema.pre("save",function(next){
